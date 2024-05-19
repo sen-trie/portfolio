@@ -2,41 +2,41 @@
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 200;
-    src: url('./Rubik-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 400;
-    src: url('./Rubik-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 500;
-    src: url('./Rubik-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 600;
-    src: url('./Rubik-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 700;
-    src: url('./Rubik-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Rubik';
     font-style: italic;
-    src: url('./Rubik-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('/Rubik-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
 :root {
@@ -411,6 +411,10 @@ textarea:focus {
     .body-footer > .body-container {
         flex-direction: column;
     }
+
+    .body-img {
+        animation: scrolling 10s linear infinite;
+    }
 }
 
 @media (max-width: 576px) {
@@ -421,5 +425,9 @@ textarea:focus {
 
     .header-mobile-div > a {
         margin-bottom: 0.5rem;
+    }
+
+    .body-img {
+        animation: scrolling 30s linear infinite;
     }
 }

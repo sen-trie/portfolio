@@ -22,7 +22,6 @@ export function moveSite(
 
 	setTimeout(
 		() => {
-			
 			const baseUrl = import.meta.env.MODE === 'development' ? import.meta.env.BASE_URL : 'https://sen-trie.github.io/portfolio';
 			window.location.href = clickHome ?  baseUrl : `${baseUrl}/${altDomain}`;
 		},

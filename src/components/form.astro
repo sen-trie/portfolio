@@ -1,8 +1,16 @@
-<style>
+---
+export interface Props {
+  col: string;
+}
+
+const { col } = Astro.props;
+---
+
+<style define:vars={{ col }}>
 	.body-receipt {
         height: unset;
 		padding-bottom: 5rem;
-		background-color: #4d3c77;
+		background-color: var(--col);
 	}
 
     .body-container {

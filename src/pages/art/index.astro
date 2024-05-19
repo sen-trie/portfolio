@@ -32,10 +32,10 @@ import proj4 from "../../assets/proj4.png";
 		goDev('./home');
 	});
 
-	const artButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
-	artButtons.forEach((button) => {
+	const devButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
+	devButtons.forEach((button) => {
 		button.addEventListener('click', () => {
-			goDev('./art');
+			goDev('./dev');
 		});
 	});
 
@@ -50,8 +50,8 @@ import proj4 from "../../assets/proj4.png";
 	let homeHeader = document.getElementById('homeHeader');
 	let homeText = document.getElementById('homeText');
 	let bodyLeft = document.getElementById('bodyLeft');
+	let bodyLeftImg = document.getElementById('bodyLeftImg');
 	let bodyRight = document.getElementById('bodyRight');
-	let bodyRightImg = document.getElementById('bodyRightImg');
 	let devHeader = document.getElementById('devHeader');
 	let transitionFirst = true;
 	let headerMobile = document.getElementById('headerMobile');
@@ -61,23 +61,23 @@ import proj4 from "../../assets/proj4.png";
 
 	function goDev(altDomain: string) {
 		if (transitionFirst) {
-			headerMobile.style.transform = 'translateX(-100%)';
+			headerMobile.style.transform = 'translateX(100%)';
 			devHeader.style.opacity = '0';
 			coverDiv.style.opacity = "1";
-			bodyRight.innerText = 'Loading...';
+			bodyLeft.innerText = 'Loading...';
 
-			bodyRightImg.style.animation = 'none';
-			bodyRightImg.offsetHeight;
-			bodyRightImg.style.animation = '';
-			bodyRightImg.style.animationDelay = '-7s';
+			bodyLeftImg.style.animation = 'none';
+			bodyLeftImg.offsetHeight;
+			bodyLeftImg.style.animation = '';
+			bodyLeftImg.style.animationDelay = '-7s';
 
-			if (altDomain === 'art') {
-				bodyLeft.style.transition = 'transform 800ms ease';
-				bodyLeft.style.transform = 'translateX(-100%)';
+			if (altDomain === 'dev') {
+				bodyRight.style.transition = 'transform 800ms ease';
+				bodyRight.style.transform = 'translateX(100%)';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain);
 			} else {
-				bodyRightImg.style.background = 'var(--light-body)';
-				bodyLeft.style.transform = 'translateX(-50%)';
+				bodyLeftImg.style.background = 'var(--light-body)';
+				bodyRight.style.transform = 'translateX(-50%)';
 				homeHeader.style.height = '160px';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain);
 			}
@@ -94,8 +94,8 @@ import proj4 from "../../assets/proj4.png";
 			case 'Escape':
 				goDev('home');
 				break;
-			case 'ArrowRight':
-				goDev('art');
+			case 'ArrowLeft':
+				goDev('dev');
 				break;
 			default:
 				break;
@@ -128,7 +128,11 @@ import proj4 from "../../assets/proj4.png";
 				I AM SENTRIE
 			</p>
 		</div>
-		<div class="body-side body-left" id="bodyLeft">
+		<div class="body-side body-left">
+			<p id="bodyLeft" class=""></p>
+			<div id="bodyLeftImg" class="body-img"></div>
+		</div>
+		<div class="body-side body-right" id="bodyRight">
 			<div class="cover-div" id="coverDiv"></div>
 			<div class="dev-header" id="devHeader">
 				<div class="dev-header-left">
@@ -137,21 +141,21 @@ import proj4 from "../../assets/proj4.png";
 					</ProfileButton>
 					<div class="header-div">
 						<a class="header-item" href="./#about">ABOUT</a>
-						<a class="header-item" href="./#projects">PROJECTS</a>
+						<a class="header-item" href="./#graphics">GRAPHICS</a>
 						<a class="header-item" href="./#contact">CONTACT</a>
 					</div>
 					<button class="header-button">☰</button>
 				</div>
 				<div class="dev-header-right">
 					<a class="social-share-btn" href="https://twitter.com/IAM_Sentry" target="_blank" >
-						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
 							<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
 							<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
 						</svg>
 					</a>
 					<a class="social-share-btn" href="https://www.reddit.com/u/IAM_Sentry" target="_blank" >
-						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-reddit" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-reddit" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
 							<path d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z" />
 							<path d="M12 8l1 -5l6 1" />
@@ -160,18 +164,19 @@ import proj4 from "../../assets/proj4.png";
 							<circle cx="15" cy="13" r=".5" fill="currentColor" />
 							<path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
 						  </svg>
-					<a class="social-share-btn" href="https://github.com/sen-trie" target="_blank" >
-						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+					<a class="social-share-btn" href="https://www.youtube.com/@IAM_SENTRY" target="_blank" >
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-							<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-						</svg>
+							<path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+							<path d="M10 9l5 3l-5 3z" />
+						  </svg>
 					</a>
 				</div>
 			</div>
 			<div class="dev-body subpage-body">
 				<div id="headerMobile" class="header-mobile-div">
 					<a class="header-mobile-item" href="./#about">ABOUT</a>
-					<a class="header-mobile-item" href="./#projects">PROJECTS</a>
+					<a class="header-mobile-item" href="./#graphics">GRAPHICS</a>
 					<a class="header-mobile-item" href="./#contact">CONTACT</a>
 					<button class="header-mobile-button">
 						ART →
@@ -197,10 +202,10 @@ import proj4 from "../../assets/proj4.png";
 						</p>
 					</div>
 				</div>
-				<Anchor id="projects" />
+				<Anchor id="graphics" />
 				<div class="body-menu dev-body-block">
 					<div class="body-container">
-						<h1>Projects</h1>
+						<h1>Graphics</h1>
 						<div class="dev-block-tile">
 							<div class="dev-block">
 								<div class="block-text">
@@ -265,12 +270,12 @@ import proj4 from "../../assets/proj4.png";
 				</div>
 				<div class="divider menu-divider dev-body-block"></div>
 				<Anchor id="contact" />
-				<Form col="#4d3c77"/>
+				<Form col="#8B8EB2"/>
 				<div class="body-art dev-body-block">
 					<div class="body-container">
 						<button
 							class="switch-body">
-							SWITCH TO <br /> NIGHTTIME
+							SWITCH TO <br /> DAYTIME
 						</button>
 					</div>
 				</div>
@@ -282,10 +287,6 @@ import proj4 from "../../assets/proj4.png";
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="body-side body-right">
-			<p id="bodyRight" class=""></p>
-			<div id="bodyRightImg" class="body-img"></div>
 		</div>
 	</div>
 </Meta>
@@ -322,10 +323,10 @@ import proj4 from "../../assets/proj4.png";
 		background-color: var(--dark-body);
 	}
 
-	.body-left {
+	.body-right {
 		position: relative;
-		background: var(--dark-body);
-		scrollbar-color: var(--dark-title) transparent;
+		background: #582f3b;
+		scrollbar-color: #eed695 transparent;
 		overflow-y: auto;
 	}
 
@@ -333,7 +334,7 @@ import proj4 from "../../assets/proj4.png";
 		height: fit-content;
 	}
 
-	.body-right {
+	.body-left {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -341,7 +342,7 @@ import proj4 from "../../assets/proj4.png";
 		z-index: -1;
 	}
 
-	.body-right,
+	.body-left,
 	.body-img {
 		height: 100%;
 	}
@@ -349,7 +350,7 @@ import proj4 from "../../assets/proj4.png";
 	.dev-header {
 		position: fixed;
 		top: 0;
-		color: var(--dark-title);
+		color: #eed695;
 		height: 100px;
 		font-size: var(--font-h3);
 		background: rgba(0, 0, 0, 0.4);
@@ -440,7 +441,7 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.body-story {
-		background-color: #3f1d38;
+		background-color: #469C90;
 		padding-bottom: 55px;
 	}
 
@@ -452,7 +453,7 @@ import proj4 from "../../assets/proj4.png";
 	.body-menu {
 		padding: 1rem 0;
 		padding-top: 2.5rem;
-		background-image: linear-gradient(#0d1117, #0d1117);
+		background-image: linear-gradient(#4b7251, #3b5840);
 	}
 
 	.body-menu > .body-container {
@@ -472,13 +473,13 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.dev-block {
-		color: white;
+		color: black;
 		flex-direction: row;
         justify-content: space-between;
 		margin-top: 1rem;
         margin-bottom: 1rem;
 		padding: 0 1rem 2rem 1rem;
-		border-bottom: solid white 0.2rem;
+		border-bottom: solid black 0.2rem;
 		height: 400px;
 		min-height: 350px;
 		gap: 1rem;
@@ -511,13 +512,6 @@ import proj4 from "../../assets/proj4.png";
 		aspect-ratio: 1;
 	}
 
-	/* .block-ingredients > img {
-		width: inherit;
-		max-width: 100%;
-		height: fit-content;
-		aspect-ratio: 1;
-	} */
-
 	.block-text {
 		width: 50%;
 		padding: 0.1rem 0 0 0;
@@ -538,7 +532,7 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.body-art {
-		background-color: #3f1d38;
+		background-color: #469C90;
 	}
 
     .switch-body {
@@ -548,6 +542,10 @@ import proj4 from "../../assets/proj4.png";
     .switch-body > p {
         color: #3f1d38;
     }
+
+	.body-footer {
+		background-color: #3b5840;
+	}
 
 	@media (max-width: 992px) {
 		.dev-header {
