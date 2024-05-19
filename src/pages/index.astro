@@ -1,0 +1,50 @@
+---
+import '../global.css'
+---
+
+<script lang="ts">
+	function homeClick(altDomain) {
+		return;
+	}
+</script>
+	<div class="home-div" id="homeDiv">
+		<div class="home-header" id="homeHeader">
+			<p id="home-text">
+				Welcome to my page
+				<br />
+				I AM SENTRIE
+			</p>
+		</div>
+		<div class="body-side body-left" onClick={() => {homeClick('dev')}}>
+			<p id="bodyLeft">
+				Visit dev to read the documentation
+			</p>
+			<div class="body-img"></div>
+		</div>
+		<div class="body-side body-right" onClick={() => {homeClick('art')}}>
+			<p id="bodyRight">
+				Visit art to read the documentation
+			</p>
+			<div class="body-img"></div>
+		</div>
+	</div>
+
+<style>
+	.home-header {
+		pointer-events: none;
+		position: absolute;
+		top: 15%;
+		height: 160px;
+		transition: var(--trans-time) ease;
+		background: linear-gradient(90deg, var(--light-body) 50%, var(--dark-body) 50%);
+	}
+
+	.home-header > p {
+		width: auto;
+		height: auto;
+		background: linear-gradient(90deg, var(--dark-body) 50%, var(--light-body) 50%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
