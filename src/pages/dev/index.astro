@@ -1,6 +1,6 @@
 ---
 import '../../global.css'
-import Meta from '../../components/headers.astro';
+import Meta from '../../layouts/layout.astro';
 import Anchor from '../../components/anchor.astro'
 import Form from '../../components/form.astro';
 import ProfileButton from '../../components/profileLogo.astro';
@@ -22,27 +22,48 @@ import proj4 from "../../assets/proj4.png";
 <script>
 	import { moveSite } from '../../shared.js'
 
+	window.onload = function() {
+		const form = document.getElementById("form");
+		if(form) (form as HTMLFormElement).reset(); 
+    };
+
 	const profileButton = document.getElementById('profileLogo');
 	profileButton.addEventListener('click', () => {
 		goDev('./home');
-	})
+	});
 
+	const artButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
+	artButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			goDev('./art');
+		});
+	});
+
+	const menuButtons = document.querySelectorAll('.header-button, .header-mobile-div');
+	menuButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			handleMenu();
+		});
+	});
+	
+	let homeDiv = document.getElementById('homeDiv');
+	let homeHeader = document.getElementById('homeHeader');
+	let homeText = document.getElementById('homeText');
+	let bodyLeft = document.getElementById('bodyLeft');
+	let bodyRight = document.getElementById('bodyRight');
+	let bodyRightImg = document.getElementById('bodyRightImg');
+	let devHeader = document.getElementById('devHeader');
 	let transitionFirst = true;
+	let headerMobile = document.getElementById('headerMobile');
+	headerMobile.style.zIndex = "-1";
+	let coverDiv = document.getElementById('coverDiv');
+	coverDiv.style.opacity = "0";
 
 	function goDev(altDomain: string) {
-		let homeDiv = document.getElementById('homeDiv');
-		let homeHeader = document.getElementById('homeHeader');
-		let headerMobile = document.getElementById('headerMobile')
-		let homeText = document.getElementById('homeText');
-		let bodyLeft = document.getElementById('bodyLeft');
-		let bodyRight = document.getElementById('bodyRight');
-		let bodyRightImg = document.getElementById('bodyRightImg');
-		let coverDiv = document.getElementById('coverDiv');
-		let devHeader = document.getElementById('devHeader');
-
 		if (transitionFirst) {
 			headerMobile.style.transform = 'translateX(-100%)';
 			devHeader.style.opacity = '0';
+			coverDiv.style.opacity = "1";
 			bodyRight.innerText = 'Loading...';
 
 			bodyRightImg.style.animation = 'none';
@@ -57,9 +78,7 @@ import proj4 from "../../assets/proj4.png";
 			} else {
 				bodyRightImg.style.background = 'var(--light-body)';
 				bodyLeft.style.transform = 'translateX(-50%)';
-				if (altDomain === 'home') {
-					homeHeader.style.height = '160px';
-				}
+				homeHeader.style.height = '160px';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain);
 			}
 		}
@@ -67,192 +86,209 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	function handleMenu() {
-		// headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
+		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
+	}
+
+	document.addEventListener('keydown', (event: KeyboardEvent) => {
+		switch (event.key) {
+			case 'Escape':
+				goDev('home');
+				break;
+			case 'ArrowRight':
+				goDev('art');
+				break;
+			default:
+				break;
+		}
+	});
+
+	const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
+	const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
+	document.addEventListener('mousemove', (event: MouseEvent) => {
+		izakayaMain.style.transform = parallax(event, 1.4);
+		izakayaBg.style.transform = parallax(event, 1);
+	});
+
+	function parallax(e: MouseEvent, multiplier: number) {
+		let _w = window.innerWidth / 2;
+		let _h = window.innerHeight / 2;
+		let _mouseX = e.clientX;
+		let _mouseY = e.clientY;
+		let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
+		return `translate(${_depth1}) scale(1.1)`;
 	}
 </script>
 
-<Meta title="SENTRIE/DEV"/>
-<div class="home-div" id="homeDiv">
-	<div class="home-header" id="homeHeader">
-		<p id="homeText">
-			Welcome to my page
-			<br />
-			I AM SENTRIE
-		</p>
-	</div>
-	<div class="body-side body-left" id="bodyLeft">
-		<div class="cover-div" id="coverDiv"></div>
-		<div class="dev-header" id="devHeader">
-			<div class="dev-header-left">
-				<ProfileButton>
-					<Image src={devPp} alt="developer profile" class="profile-pic" />
-				</ProfileButton>
-				<div class="header-div">
-					<a class="header-item" href="./#about">ABOUT</a>
-					<a class="header-item" href="./#projects">PROJECTS</a>
-					<a class="header-item" href="./#contact">CONTACT</a>
-				</div>
-				<!-- <button
-					class="header-button"
-					onclick={() => {
-						handleMenu();
-					}}>☰</button> -->
-			</div>
-			<div class="dev-header-right">
-				<a class="social-share-btn" href="https://twitter.com/IAM_Sentry" target="_blank" >
-					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-						<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-						<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-					</svg>
-				</a>
-				<a class="social-share-btn" href="https://www.reddit.com/u/IAM_Sentry" target="_blank" >
-					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-reddit" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-						<path d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z" />
-						<path d="M12 8l1 -5l6 1" />
-						<path d="M19 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-						<circle cx="9" cy="13" r=".5" fill="currentColor" />
-						<circle cx="15" cy="13" r=".5" fill="currentColor" />
-						<path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
-					  </svg>
-				<a class="social-share-btn" href="https://github.com/sen-trie" target="_blank" >
-					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-						<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-					</svg>
-				</a>
-			</div>
+<Meta title="SENTRIE/DEV">
+	<div class="home-div" id="homeDiv">
+		<div class="home-header" id="homeHeader">
+			<p id="homeText">
+				Welcome to my page
+				<br />
+				I AM SENTRIE
+			</p>
 		</div>
-		<div class="dev-body subpage-body">
-			<div id="headerMobile" class="header-mobile-div">
-				<!-- onclick={() => {handleMenu()}} -->
-				<a class="header-mobile-item" href="./#about">ABOUT</a>
-				<a class="header-mobile-item" href="./#projects">PROJECTS</a>
-				<a class="header-mobile-item" href="./#contact">CONTACT</a>
-                <!-- <button
-					on:click={() => {
-						goDev('home');
-					}}>
-					ART →
-				</button> -->
-			</div>
-			<div class="body-top dev-body-block">
-				<Image src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
-				<Image src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
-				<div class="divider top-divider dev-body-block" />
-			</div>
-			<Anchor id="about" />
-			<div class="body-story dev-body-block">
-				<div class="body-container">
-					<h1>About</h1>
-					<p>
-						Hello! I like building and creating stuff on a computer. As a developer, I design and code with user
-						experience as the first priority. With a keen interest in web applications, I aim to develop cool and
-						appealing solutions.
-						<br /><br />
-						With each project, I try to learn something new, whether it be a new technology (e.g a framework / programming
-						language) or a different method (e.g. 3d modelling techniques). This commitment to trying new things fuels my
-						progress, not just as a developer but as a human.
-					</p>
+		<div class="body-side body-left" id="bodyLeft">
+			<div class="cover-div" id="coverDiv"></div>
+			<div class="dev-header" id="devHeader">
+				<div class="dev-header-left">
+					<ProfileButton>
+						<Image src={devPp} alt="developer profile" class="profile-pic" />
+					</ProfileButton>
+					<div class="header-div">
+						<a class="header-item" href="./#about">ABOUT</a>
+						<a class="header-item" href="./#projects">PROJECTS</a>
+						<a class="header-item" href="./#contact">CONTACT</a>
+					</div>
+					<button class="header-button">☰</button>
+				</div>
+				<div class="dev-header-right">
+					<a class="social-share-btn" href="https://twitter.com/IAM_Sentry" target="_blank" >
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+							<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+							<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+						</svg>
+					</a>
+					<a class="social-share-btn" href="https://www.reddit.com/u/IAM_Sentry" target="_blank" >
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-reddit" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+							<path d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z" />
+							<path d="M12 8l1 -5l6 1" />
+							<path d="M19 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+							<circle cx="9" cy="13" r=".5" fill="currentColor" />
+							<circle cx="15" cy="13" r=".5" fill="currentColor" />
+							<path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
+						  </svg>
+					<a class="social-share-btn" href="https://github.com/sen-trie" target="_blank" >
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+							<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+						</svg>
+					</a>
 				</div>
 			</div>
-			<Anchor id="projects" />
-			<div class="body-menu dev-body-block">
-				<div class="body-container">
-					<h1>Projects</h1>
-					<div class="dev-block-tile">
-						<div class="dev-block">
-							<div class="block-text">
-								<p class="block-name">nahidaQuest!</p>
-								<p class="block-desc">
-									An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on
-									modern desktop and mobile browsers.
-								</p>
-								<div class="block-ingredients">
-									<Image src={html} alt="HTML Icon" />
-									<Image src={css} alt="CSS Icon" />
-									<Image src={js} alt="Javascript Icon" />
+			<div class="dev-body subpage-body">
+				<div id="headerMobile" class="header-mobile-div">
+					<a class="header-mobile-item" href="./#about">ABOUT</a>
+					<a class="header-mobile-item" href="./#projects">PROJECTS</a>
+					<a class="header-mobile-item" href="./#contact">CONTACT</a>
+					<button class="header-mobile-button">
+						ART →
+					</button>
+				</div>
+				<div class="body-top dev-body-block">
+					<Image src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+					<div class="divider top-divider dev-body-block" />
+				</div>
+				<Anchor id="about" />
+				<div class="body-story dev-body-block">
+					<div class="body-container">
+						<h1>About</h1>
+						<p>
+							Hello! I like building and creating stuff on a computer. As a developer, I design and code with user
+							experience as the first priority. With a keen interest in web applications, I aim to develop cool and
+							appealing solutions.
+							<br /><br />
+							With each project, I try to learn something new, whether it be a new technology (e.g a framework / programming
+							language) or a different method (e.g. 3d modelling techniques). This commitment to trying new things fuels my
+							progress, not just as a developer but as a human.
+						</p>
+					</div>
+				</div>
+				<Anchor id="projects" />
+				<div class="body-menu dev-body-block">
+					<div class="body-container">
+						<h1>Projects</h1>
+						<div class="dev-block-tile">
+							<div class="dev-block">
+								<div class="block-text">
+									<p class="block-name">nahidaQuest!</p>
+									<p class="block-desc">
+										An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on
+										modern desktop and mobile browsers.
+									</p>
+									<div class="block-ingredients">
+										<Image src={html} alt="HTML Icon" />
+										<Image src={css} alt="CSS Icon" />
+										<Image src={js} alt="Javascript Icon" />
+									</div>
 								</div>
+								<a class="block-pic" href={`${githubRepo}/nahidaQuest`} target="_blank">
+									<Image src={proj1} alt="nahidaQuest Project" />
+								</a>
 							</div>
-							<a class="block-pic" href="{githubRepo}/nahidaQuest" target="_blank">
-								<Image src={proj1} alt="nahidaQuest Project" />
-							</a>
-						</div>
-						<div class="dev-block">
-							<div class="block-text">
-								<p class="block-name">2D Heat Diffusion</p>
-								<p class="block-desc">
-									Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
-									partial differential equation and visualizes the solution as a heatmap.
-								</p>
-								<div class="block-ingredients">
-									<Image src={matlab} alt="Matlab Icon"/>
+							<div class="dev-block">
+								<div class="block-text">
+									<p class="block-name">2D Heat Diffusion</p>
+									<p class="block-desc">
+										Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
+										partial differential equation and visualizes the solution as a heatmap.
+									</p>
+									<div class="block-ingredients">
+										<Image src={matlab} alt="Matlab Icon"/>
+									</div>
 								</div>
+								<a class="block-pic" href={`${githubRepo}/2d-heat-diffusion`} target="_blank">
+									<Image src={proj2} alt="Matlab Project"/>
+								</a>
 							</div>
-							<a class="block-pic" href="{githubRepo}/2d-heat-diffusion" target="_blank">
-								<Image src={proj2} alt="Matlab Project"/>
-							</a>
-						</div>
-						<div class="dev-block">
-							<div class="block-text">
-								<p class="block-name">The Lair</p>
-								<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
-								<div class="block-ingredients">
-									<Image src={js} alt="Javascript Icon" />
-									<Image src={react} alt="React Icon" />
+							<div class="dev-block">
+								<div class="block-text">
+									<p class="block-name">The Lair</p>
+									<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
+									<div class="block-ingredients">
+										<Image src={js} alt="Javascript Icon" />
+										<Image src={react} alt="React Icon" />
+									</div>
 								</div>
+								<a class="block-pic" href={`${githubRepo}/shopping-cart`} target="_blank">
+									<Image src={proj3} alt="Storefront Project" />
+								</a>
 							</div>
-							<a class="block-pic" href="{githubRepo}/shopping-cart" target="_blank">
-								<Image src={proj3} alt="Storefront Project" />
-							</a>
-						</div>
-						<div class="dev-block">
-							<div class="block-text">
-								<p class="block-name">CV Maker</p>
-								<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
-								<div class="block-ingredients">
-									<Image src={js} alt="Javascript Icon" />
-									<Image src={react} alt="React Icon" />
+							<div class="dev-block">
+								<div class="block-text">
+									<p class="block-name">CV Maker</p>
+									<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
+									<div class="block-ingredients">
+										<Image src={js} alt="Javascript Icon" />
+										<Image src={react} alt="React Icon" />
+									</div>
 								</div>
+								<a class="block-pic" href={`${githubRepo}/cv-project`} target="_blank">
+									<Image src={proj4} alt="CV Maker Project" />
+								</a>
 							</div>
-							<a class="block-pic" href="{githubRepo}/cv-project" target="_blank">
-								<Image src={proj4} alt="CV Maker Project" />
-							</a>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="divider menu-divider dev-body-block"></div>
-			<Anchor id="contact" />
-			<Form/>
-			<div class="body-art dev-body-block">
-				<div class="body-container">
-					<button
-						class="switch-body"
-						>
-						SWITCH TO <br /> DAYTIME
-						<enhanced:img src="../../assets/dev_pp.png" alt="developer profile" class="profile-pic" />
-					</button>
-					<!-- on:click={() => {
-						goDev('art');
-					}} -->
+				<div class="divider menu-divider dev-body-block"></div>
+				<Anchor id="contact" />
+				<Form/>
+				<div class="body-art dev-body-block">
+					<div class="body-container">
+						<button
+							class="switch-body">
+							SWITCH TO <br /> DAYTIME
+						</button>
+					</div>
 				</div>
-			</div>
-			<div class="body-footer dev-body-block">
-				<div class="body-container">
-					<p>© Copyright I_AM_SENTRIE</p>
-					<p>Made with Astro</p>
-					<p>backupsentrie@gmail.com</p>
+				<div class="body-footer dev-body-block">
+					<div class="body-container">
+						<p>© Copyright I_AM_SENTRIE</p>
+						<p>Made with Astro</p>
+						<p>backupsentrie@gmail.com</p>
+					</div>
 				</div>
 			</div>
 		</div>
+		<div class="body-side body-right">
+			<p id="bodyRight" class=""></p>
+			<div id="bodyRightImg" class="body-img"></div>
+		</div>
 	</div>
-	<div class="body-side body-right">
-		<p id="bodyRight" class=""></p>
-		<div id="bodyRightImg" class="body-img"></div>
-	</div>
-</div>
+</Meta>
 
 <style>
 	h1 {
@@ -489,7 +525,7 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.block-pic {
-		max-height: 90%;
+		max-height: 82.5%;
 		width: 45%;
 		aspect-ratio: 1.27;
 	}
@@ -568,9 +604,11 @@ import proj4 from "../../assets/proj4.png";
 		}
 
 		.block-pic {
-            max-height: clamp(50%, 35vh, 100%);
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+            max-height: clamp(50%, 35vh, 80%);
 			width: 90%;
-            aspect-ratio: 1.35;
+            aspect-ratio: 2;
 		}
 
 		.block-ingredients {
@@ -606,7 +644,9 @@ import proj4 from "../../assets/proj4.png";
 		}
 
 		.block-pic {
-			max-height: clamp(50%, 25vh, 100%);
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			max-height: clamp(50%, 25vh, 80%);
 			width: 100%;
 		}
 	}

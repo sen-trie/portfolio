@@ -1,5 +1,6 @@
 ---
 import '../global.css'
+import Meta from '../layouts/layout.astro';
 ---
 
 <script>
@@ -18,8 +19,6 @@ import '../global.css'
 	let transitionFirst = true;
 
 	function homeClick(altDomain: string) {
-		
-	console.log(1)
 		if (transitionFirst) {
 			homeHeader.style.height = '0';
 			homeText.style.opacity = '0';
@@ -32,27 +31,29 @@ import '../global.css'
 	}
 </script>
 
-<div class="home-div" id="homeDiv">
-	<div class="home-header" id="homeHeader">
-		<p id="homeText">
-			Welcome to my page
-			<br />
-			I AM SENTRIE
-		</p>
+<Meta title="SENTRIE'S PORTFOLIO">
+	<div class="home-div" id="homeDiv">
+		<div class="home-header" id="homeHeader">
+			<p id="homeText">
+				Welcome to my page
+				<br />
+				I AM SENTRIE
+			</p>
+		</div>
+		<div class="body-side body-left" id="bodyLeftDiv">
+			<p id="bodyLeft">
+				Visit dev to read the documentation
+			</p>
+			<div class="body-img"></div>
+		</div>
+		<div class="body-side body-right" id="bodyRightDiv">
+			<p id="bodyRight">
+				Visit art to read the documentation
+			</p>
+			<div class="body-img"></div>
+		</div>
 	</div>
-	<div class="body-side body-left" id="bodyLeftDiv">
-		<p id="bodyLeft">
-			Visit dev to read the documentation
-		</p>
-		<div class="body-img"></div>
-	</div>
-	<div class="body-side body-right" id="bodyRightDiv">
-		<p id="bodyRight">
-			Visit art to read the documentation
-		</p>
-		<div class="body-img"></div>
-	</div>
-</div>
+</Meta>
 
 <style>
 	.home-header {

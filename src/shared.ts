@@ -22,7 +22,9 @@ export function moveSite(
 
 	setTimeout(
 		() => {
-			clickHome ? window.location.href = `/portfolio` : window.location.href = `/portfolio/${altDomain}`;
+			
+			const baseUrl = import.meta.env.MODE === 'development' ? import.meta.env.BASE_URL : 'https://sen-trie.github.io/portfolio';
+			window.location.href = clickHome ?  baseUrl : `${baseUrl}/${altDomain}`;
 		},
 		clickHome ? 460 : 800
 	);
