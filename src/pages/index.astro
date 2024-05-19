@@ -2,27 +2,51 @@
 import '../global.css'
 ---
 
-<script lang="ts">
-	function homeClick(altDomain) {
-		return;
+<script>
+	import { moveSite } from "../shared";
+
+	const bodyLeftDiv = document.getElementById('bodyLeftDiv');
+	bodyLeftDiv.addEventListener('click', () => { homeClick('dev') });
+	const bodyRightDiv = document.getElementById('bodyRightDiv')
+	bodyRightDiv.addEventListener('click', () => { homeClick('art') });
+
+	let homeHeader = document.getElementById("homeHeader");
+	let bodyLeft = document.getElementById("bodyLeft");
+	let bodyRight = document.getElementById("bodyRight");
+	let homeDiv = document.getElementById("homeDiv");
+	let homeText = document.getElementById("homeText");
+	let transitionFirst = true;
+
+	function homeClick(altDomain: string) {
+		
+	console.log(1)
+		if (transitionFirst) {
+			homeHeader.style.height = '0';
+			homeText.style.opacity = '0';
+			if (altDomain !== 'contact') {
+				altDomain === 'dev' ? (bodyRight.style.opacity = '0') : (bodyLeft.style.opacity = '0');
+			}
+			moveSite(homeHeader, homeDiv, bodyRight, bodyLeft, false, altDomain, true);
+		}
+		transitionFirst = false;
 	}
 </script>
 
 <div class="home-div" id="homeDiv">
 	<div class="home-header" id="homeHeader">
-		<p id="home-text">
+		<p id="homeText">
 			Welcome to my page
 			<br />
 			I AM SENTRIE
 		</p>
 	</div>
-	<div class="body-side body-left" onClick={() => {homeClick('dev')}}>
+	<div class="body-side body-left" id="bodyLeftDiv">
 		<p id="bodyLeft">
 			Visit dev to read the documentation
 		</p>
 		<div class="body-img"></div>
 	</div>
-	<div class="body-side body-right" onClick={() => {homeClick('art')}}>
+	<div class="body-side body-right" id="bodyRightDiv">
 		<p id="bodyRight">
 			Visit art to read the documentation
 		</p>

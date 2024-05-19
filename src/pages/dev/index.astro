@@ -1,18 +1,77 @@
 ---
 import '../../global.css'
+import Meta from '../../components/headers.astro';
 import Anchor from '../../components/anchor.astro'
 import Form from '../../components/form.astro';
+import ProfileButton from '../../components/profileLogo.astro';
+import { githubRepo } from '../../shared.js'
 import { Image } from 'astro:assets';
+import devPp from "../../assets/dev_pp.png";
 import izakayaBg from "../../assets/izakaya_bg.png";
 import izakaya from "../../assets/izakaya.png";
+import html from "../../assets/html.png";
+import css from "../../assets/css.png";
+import js from "../../assets/javascript.png";
+import matlab from "../../assets/matlab.png";
+import react from "../../assets/react.png";
+import proj1 from "../../assets/proj1.png";
+import proj2 from "../../assets/proj2.png";
+import proj3 from "../../assets/proj3.png";
+import proj4 from "../../assets/proj4.png";
 ---
+<script>
+	import { moveSite } from '../../shared.js'
 
-<script lang="ts">
+	const profileButton = document.getElementById('profileLogo');
+	profileButton.addEventListener('click', () => {
+		goDev('./home');
+	})
+
+	let transitionFirst = true;
+
+	function goDev(altDomain: string) {
+		let homeDiv = document.getElementById('homeDiv');
+		let homeHeader = document.getElementById('homeHeader');
+		let headerMobile = document.getElementById('headerMobile')
+		let homeText = document.getElementById('homeText');
+		let bodyLeft = document.getElementById('bodyLeft');
+		let bodyRight = document.getElementById('bodyRight');
+		let bodyRightImg = document.getElementById('bodyRightImg');
+		let coverDiv = document.getElementById('coverDiv');
+		let devHeader = document.getElementById('devHeader');
+
+		if (transitionFirst) {
+			headerMobile.style.transform = 'translateX(-100%)';
+			devHeader.style.opacity = '0';
+			bodyRight.innerText = 'Loading...';
+
+			bodyRightImg.style.animation = 'none';
+			bodyRightImg.offsetHeight;
+			bodyRightImg.style.animation = '';
+			bodyRightImg.style.animationDelay = '-7s';
+
+			if (altDomain === 'art') {
+				bodyLeft.style.transition = 'transform 800ms ease';
+				bodyLeft.style.transform = 'translateX(-100%)';
+				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain);
+			} else {
+				bodyRightImg.style.background = 'var(--light-body)';
+				bodyLeft.style.transform = 'translateX(-50%)';
+				if (altDomain === 'home') {
+					homeHeader.style.height = '160px';
+				}
+				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain);
+			}
+		}
+		transitionFirst = false;
+	}
+
 	function handleMenu() {
-		return;
+		// headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
 	}
 </script>
 
+<Meta title="SENTRIE/DEV"/>
 <div class="home-div" id="homeDiv">
 	<div class="home-header" id="homeHeader">
 		<p id="homeText">
@@ -25,12 +84,9 @@ import izakaya from "../../assets/izakaya.png";
 		<div class="cover-div" id="coverDiv"></div>
 		<div class="dev-header" id="devHeader">
 			<div class="dev-header-left">
-				<!-- <button
-					on:click={() => {
-						goDev('home');
-					}}>
-					<enhanced:img src="../../assets/dev_pp.png" alt="developer profile" class="profile-pic" />
-				</button> -->
+				<ProfileButton>
+					<Image src={devPp} alt="developer profile" class="profile-pic" />
+				</ProfileButton>
 				<div class="header-div">
 					<a class="header-item" href="./#about">ABOUT</a>
 					<a class="header-item" href="./#projects">PROJECTS</a>
@@ -38,20 +94,34 @@ import izakaya from "../../assets/izakaya.png";
 				</div>
 				<!-- <button
 					class="header-button"
-					on:click={() => {
+					onclick={() => {
 						handleMenu();
 					}}>☰</button> -->
 			</div>
 			<div class="dev-header-right">
-				<!-- <a aria-label="reddit" href="https://www.reddit.com/u/IAM_Sentry" target="”_blank”" class="social-a">
-					<SocialIcons network="reddit" fgColor="transparent" bgColor="var(--dark-title)" />
+				<a class="social-share-btn" href="https://twitter.com/IAM_Sentry" target="_blank" >
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-x" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+						<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+						<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+					</svg>
 				</a>
-				<a aria-label="twitter" href="https://twitter.com/IAM_Sentry" target="”_blank”" class="social-a">
-					<SocialIcons network="twitter" fgColor="transparent" bgColor="var(--dark-title)" />
+				<a class="social-share-btn" href="https://www.reddit.com/u/IAM_Sentry" target="_blank" >
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-reddit" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+						<path d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z" />
+						<path d="M12 8l1 -5l6 1" />
+						<path d="M19 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+						<circle cx="9" cy="13" r=".5" fill="currentColor" />
+						<circle cx="15" cy="13" r=".5" fill="currentColor" />
+						<path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
+					  </svg>
+				<a class="social-share-btn" href="https://github.com/sen-trie" target="_blank" >
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="72" height="72" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e19898" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+						<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+					</svg>
 				</a>
-				<a aria-label="github" href="https://github.com/sen-trie" target="”_blank”" class="social-a">
-					<SocialIcons network="github" fgColor="transparent" bgColor="var(--dark-title)" />
-				</a> -->
 			</div>
 		</div>
 		<div class="dev-body subpage-body">
@@ -100,13 +170,13 @@ import izakaya from "../../assets/izakaya.png";
 									modern desktop and mobile browsers.
 								</p>
 								<div class="block-ingredients">
-									<enhanced:img src="../../assets/html.png" alt="HTML Icon" />
-									<enhanced:img src="../../assets/css.png" alt="CSS Icon" />
-									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
+									<Image src={html} alt="HTML Icon" />
+									<Image src={css} alt="CSS Icon" />
+									<Image src={js} alt="Javascript Icon" />
 								</div>
 							</div>
 							<a class="block-pic" href="{githubRepo}/nahidaQuest" target="_blank">
-								<enhanced:img src="../../assets/proj1.png" alt="nahidaQuest Project" />
+								<Image src={proj1} alt="nahidaQuest Project" />
 							</a>
 						</div>
 						<div class="dev-block">
@@ -117,11 +187,11 @@ import izakaya from "../../assets/izakaya.png";
 									partial differential equation and visualizes the solution as a heatmap.
 								</p>
 								<div class="block-ingredients">
-									<enhanced:img src="../../assets/matlab.png" alt="Matlab Icon"/>
+									<Image src={matlab} alt="Matlab Icon"/>
 								</div>
 							</div>
 							<a class="block-pic" href="{githubRepo}/2d-heat-diffusion" target="_blank">
-								<enhanced:img src="../../assets/proj2.png" alt="Matlab Project"/>
+								<Image src={proj2} alt="Matlab Project"/>
 							</a>
 						</div>
 						<div class="dev-block">
@@ -129,12 +199,12 @@ import izakaya from "../../assets/izakaya.png";
 								<p class="block-name">The Lair</p>
 								<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
 								<div class="block-ingredients">
-									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
-									<enhanced:img src="../../assets/react.png" alt="React Icon" />
+									<Image src={js} alt="Javascript Icon" />
+									<Image src={react} alt="React Icon" />
 								</div>
 							</div>
 							<a class="block-pic" href="{githubRepo}/shopping-cart" target="_blank">
-								<enhanced:img src="../../assets/proj3.png" alt="Storefront Project" />
+								<Image src={proj3} alt="Storefront Project" />
 							</a>
 						</div>
 						<div class="dev-block">
@@ -142,12 +212,12 @@ import izakaya from "../../assets/izakaya.png";
 								<p class="block-name">CV Maker</p>
 								<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
 								<div class="block-ingredients">
-									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
-									<enhanced:img src="../../assets/react.png" alt="React Icon" />
+									<Image src={js} alt="Javascript Icon" />
+									<Image src={react} alt="React Icon" />
 								</div>
 							</div>
 							<a class="block-pic" href="{githubRepo}/cv-project" target="_blank">
-								<enhanced:img src="../../assets/proj4.png" alt="CV Maker Project" />
+								<Image src={proj4} alt="CV Maker Project" />
 							</a>
 						</div>
 					</div>
@@ -278,6 +348,10 @@ import izakaya from "../../assets/izakaya.png";
 		height: 90px;
 	}
 
+	.icon-tabler:hover {
+		filter: brightness(200%)
+	}
+
 	.social-a {
 		margin-left: 1.6rem;
 	}
@@ -393,7 +467,7 @@ import izakaya from "../../assets/izakaya.png";
 		height: fit-content;
 	}
 
-	.block-ingredients > picture {
+	.block-ingredients > img {
 		width: 90px;
 		margin-right: 1rem;
 		max-width: 30%;
@@ -401,12 +475,12 @@ import izakaya from "../../assets/izakaya.png";
 		aspect-ratio: 1;
 	}
 
-	.block-ingredients > picture > img {
+	/* .block-ingredients > img {
 		width: inherit;
 		max-width: 100%;
 		height: fit-content;
 		aspect-ratio: 1;
-	}
+	} */
 
 	.block-text {
 		width: 50%;
@@ -420,7 +494,7 @@ import izakaya from "../../assets/izakaya.png";
 		aspect-ratio: 1.27;
 	}
 
-	.block-pic > picture > img {
+	.block-pic > img {
 		height: 100%;
 		width: 100%;
 		object-fit: cover;

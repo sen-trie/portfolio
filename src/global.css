@@ -96,6 +96,7 @@ div > p {
 }
 
 img {
+    width: auto;
     object-fit: contain;
 }
 
@@ -111,6 +112,7 @@ picture img {
 }
 
 button {
+    display: flex;
     cursor: pointer;
     background-color: transparent;
     border: transparent;
@@ -284,6 +286,17 @@ a:hover {
 
 .social-a {
     transition: opacity var(--trans-time) linear;
+}
+
+.social-share-btn {
+    display: flex;
+    padding: 0.1rem;
+    height: calc(var(--font-h1) * 1.5);
+    width: calc(var(--font-h1) * 1.5);
+}
+
+.icon-tabler {
+    transition: filter calc(var(--trans-time) * 0.75);
 }
 
 button {
