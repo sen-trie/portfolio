@@ -1,0 +1,539 @@
+---
+import '../../global.css'
+import Anchor from '../../components/anchor.astro'
+import Form from '../../components/form.astro';
+import { Image } from 'astro:assets';
+import izakayaBg from "../../assets/izakaya_bg.png";
+import izakaya from "../../assets/izakaya.png";
+---
+
+<script lang="ts">
+	function handleMenu() {
+		return;
+	}
+</script>
+
+<div class="home-div" id="homeDiv">
+	<div class="home-header" id="homeHeader">
+		<p id="homeText">
+			Welcome to my page
+			<br />
+			I AM SENTRIE
+		</p>
+	</div>
+	<div class="body-side body-left" id="bodyLeft">
+		<div class="cover-div" id="coverDiv"></div>
+		<div class="dev-header" id="devHeader">
+			<div class="dev-header-left">
+				<!-- <button
+					on:click={() => {
+						goDev('home');
+					}}>
+					<enhanced:img src="../../assets/dev_pp.png" alt="developer profile" class="profile-pic" />
+				</button> -->
+				<div class="header-div">
+					<a class="header-item" href="./#about">ABOUT</a>
+					<a class="header-item" href="./#projects">PROJECTS</a>
+					<a class="header-item" href="./#contact">CONTACT</a>
+				</div>
+				<!-- <button
+					class="header-button"
+					on:click={() => {
+						handleMenu();
+					}}>☰</button> -->
+			</div>
+			<div class="dev-header-right">
+				<!-- <a aria-label="reddit" href="https://www.reddit.com/u/IAM_Sentry" target="”_blank”" class="social-a">
+					<SocialIcons network="reddit" fgColor="transparent" bgColor="var(--dark-title)" />
+				</a>
+				<a aria-label="twitter" href="https://twitter.com/IAM_Sentry" target="”_blank”" class="social-a">
+					<SocialIcons network="twitter" fgColor="transparent" bgColor="var(--dark-title)" />
+				</a>
+				<a aria-label="github" href="https://github.com/sen-trie" target="”_blank”" class="social-a">
+					<SocialIcons network="github" fgColor="transparent" bgColor="var(--dark-title)" />
+				</a> -->
+			</div>
+		</div>
+		<div class="dev-body subpage-body">
+			<div id="headerMobile" class="header-mobile-div">
+				<!-- onclick={() => {handleMenu()}} -->
+				<a class="header-mobile-item" href="./#about">ABOUT</a>
+				<a class="header-mobile-item" href="./#projects">PROJECTS</a>
+				<a class="header-mobile-item" href="./#contact">CONTACT</a>
+                <!-- <button
+					on:click={() => {
+						goDev('home');
+					}}>
+					ART →
+				</button> -->
+			</div>
+			<div class="body-top dev-body-block">
+				<Image src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
+				<Image src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+				<div class="divider top-divider dev-body-block" />
+			</div>
+			<Anchor id="about" />
+			<div class="body-story dev-body-block">
+				<div class="body-container">
+					<h1>About</h1>
+					<p>
+						Hello! I like building and creating stuff on a computer. As a developer, I design and code with user
+						experience as the first priority. With a keen interest in web applications, I aim to develop cool and
+						appealing solutions.
+						<br /><br />
+						With each project, I try to learn something new, whether it be a new technology (e.g a framework / programming
+						language) or a different method (e.g. 3d modelling techniques). This commitment to trying new things fuels my
+						progress, not just as a developer but as a human.
+					</p>
+				</div>
+			</div>
+			<Anchor id="projects" />
+			<div class="body-menu dev-body-block">
+				<div class="body-container">
+					<h1>Projects</h1>
+					<div class="dev-block-tile">
+						<div class="dev-block">
+							<div class="block-text">
+								<p class="block-name">nahidaQuest!</p>
+								<p class="block-desc">
+									An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on
+									modern desktop and mobile browsers.
+								</p>
+								<div class="block-ingredients">
+									<enhanced:img src="../../assets/html.png" alt="HTML Icon" />
+									<enhanced:img src="../../assets/css.png" alt="CSS Icon" />
+									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
+								</div>
+							</div>
+							<a class="block-pic" href="{githubRepo}/nahidaQuest" target="_blank">
+								<enhanced:img src="../../assets/proj1.png" alt="nahidaQuest Project" />
+							</a>
+						</div>
+						<div class="dev-block">
+							<div class="block-text">
+								<p class="block-name">2D Heat Diffusion</p>
+								<p class="block-desc">
+									Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
+									partial differential equation and visualizes the solution as a heatmap.
+								</p>
+								<div class="block-ingredients">
+									<enhanced:img src="../../assets/matlab.png" alt="Matlab Icon"/>
+								</div>
+							</div>
+							<a class="block-pic" href="{githubRepo}/2d-heat-diffusion" target="_blank">
+								<enhanced:img src="../../assets/proj2.png" alt="Matlab Project"/>
+							</a>
+						</div>
+						<div class="dev-block">
+							<div class="block-text">
+								<p class="block-name">The Lair</p>
+								<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
+								<div class="block-ingredients">
+									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
+									<enhanced:img src="../../assets/react.png" alt="React Icon" />
+								</div>
+							</div>
+							<a class="block-pic" href="{githubRepo}/shopping-cart" target="_blank">
+								<enhanced:img src="../../assets/proj3.png" alt="Storefront Project" />
+							</a>
+						</div>
+						<div class="dev-block">
+							<div class="block-text">
+								<p class="block-name">CV Maker</p>
+								<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
+								<div class="block-ingredients">
+									<enhanced:img src="../../assets/javascript.png" alt="Javascript Icon" />
+									<enhanced:img src="../../assets/react.png" alt="React Icon" />
+								</div>
+							</div>
+							<a class="block-pic" href="{githubRepo}/cv-project" target="_blank">
+								<enhanced:img src="../../assets/proj4.png" alt="CV Maker Project" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="divider menu-divider dev-body-block"></div>
+			<Anchor id="contact" />
+			<Form/>
+			<div class="body-art dev-body-block">
+				<div class="body-container">
+					<button
+						class="switch-body"
+						>
+						SWITCH TO <br /> DAYTIME
+						<enhanced:img src="../../assets/dev_pp.png" alt="developer profile" class="profile-pic" />
+					</button>
+					<!-- on:click={() => {
+						goDev('art');
+					}} -->
+				</div>
+			</div>
+			<div class="body-footer dev-body-block">
+				<div class="body-container">
+					<p>© Copyright I_AM_SENTRIE</p>
+					<p>Made with Astro</p>
+					<p>backupsentrie@gmail.com</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="body-side body-right">
+		<p id="bodyRight" class=""></p>
+		<div id="bodyRightImg" class="body-img"></div>
+	</div>
+</div>
+
+<style>
+	h1 {
+		margin-bottom: 0.2rem;
+	}
+
+	.home-div {
+		grid-template-columns: 10fr 0fr;
+	}
+
+	.home-header {
+		position: absolute;
+		z-index: 99;
+		top: 15%;
+		height: 0px;
+		pointer-events: none;
+		background: linear-gradient(90deg, var(--light-body) 50%, var(--dark-body) 50%);
+		transition: var(--trans-time) ease;
+	}
+
+	.home-header > p {
+		width: auto;
+		background: linear-gradient(90deg, var(--dark-body) 50%, var(--light-body) 50%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.cover-div {
+		height: 100%;
+		background-color: var(--dark-body);
+	}
+
+	.body-left {
+		position: relative;
+		background: var(--dark-body);
+		scrollbar-color: var(--dark-title) transparent;
+		overflow-y: auto;
+	}
+
+	.dev-body-block {
+		height: fit-content;
+	}
+
+	.body-right {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.body-right,
+	.body-img {
+		height: 100%;
+	}
+
+	.dev-header {
+		position: fixed;
+		top: 0;
+		color: var(--dark-title);
+		height: 100px;
+		font-size: var(--font-h3);
+		background: rgba(0, 0, 0, 0.4);
+		z-index: 99;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 0 5%;
+		box-sizing: border-box;
+		opacity: 1;
+		transition: opacity var(--trans-time) ease;
+	}
+
+	.dev-header-left,
+	.dev-header-right {
+		width: fit-content;
+		flex-direction: row;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	picture {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.profile-pic {
+		height: 90px;
+	}
+
+	.social-a {
+		margin-left: 1.6rem;
+	}
+
+	.dev-body {
+		box-sizing: border-box;
+		max-height: inherit;
+	}
+
+	.divider {
+		height: 100px;
+		width: 100%;
+		background-color: transparent;
+	}
+
+	.top-divider {
+		position: absolute;
+		bottom: 0;
+		margin-top: -5%;
+		background-image: url(../../assets/border_story.png);
+	}
+
+	.menu-divider {
+		background-color: #0d1117;
+		background-image: url(../../assets/border_receipt.png);
+	}
+
+	.body-top {
+		display: block;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.izakaya-main {
+		filter: drop-shadow(0 0 0.35rem #a86eb877) drop-shadow(0 0 0.35rem #3d174763);
+	}
+
+	.izakaya {
+		position: absolute;
+		display: block;
+		object-fit: cover;
+		object-position: center center;
+		height: 100%;
+		width: 100%;
+		min-height: 100%;
+		min-width: 100%;
+		transform: scale(1.1);
+	}
+
+	.body-story {
+		background-color: #3f1d38;
+		padding-bottom: 55px;
+	}
+
+	.body-container {
+		padding: 0 1.5rem;
+		max-width: calc(900px + 1.5rem);
+	}
+
+	.body-menu {
+		padding: 1rem 0;
+		padding-top: 2.5rem;
+		background-image: linear-gradient(#0d1117, #0d1117);
+	}
+
+	.body-menu > .body-container {
+		max-width: calc(1100px + 1.5rem);
+	}
+
+	.dev-block-tile {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+	}
+
+	.dev-block-tile p {
+		padding-left: 1rem;
+		align-items: flex-start;
+	}
+
+	.dev-block {
+		color: white;
+		flex-direction: row;
+        justify-content: space-between;
+		margin-top: 1rem;
+        margin-bottom: 1rem;
+		padding: 0 1rem 2rem 1rem;
+		border-bottom: solid white 0.2rem;
+		height: 400px;
+		min-height: 350px;
+		gap: 1rem;
+	}
+
+	.dev-block p {
+		height: fit-content;
+	}
+
+	.block-name {
+		font-size: var(--font-h2);
+	}
+
+	.block-desc {
+		color: var(--light-body);
+		font-weight: 200;
+	}
+
+	.block-ingredients {
+		flex-direction: row;
+		justify-content: flex-start;
+		height: fit-content;
+	}
+
+	.block-ingredients > picture {
+		width: 90px;
+		margin-right: 1rem;
+		max-width: 30%;
+		height: fit-content;
+		aspect-ratio: 1;
+	}
+
+	.block-ingredients > picture > img {
+		width: inherit;
+		max-width: 100%;
+		height: fit-content;
+		aspect-ratio: 1;
+	}
+
+	.block-text {
+		width: 50%;
+		padding: 0.1rem 0 0 0;
+		justify-content: space-around;
+	}
+
+	.block-pic {
+		max-height: 90%;
+		width: 45%;
+		aspect-ratio: 1.27;
+	}
+
+	.block-pic > picture > img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+        border: 4px solid var(--light-body);
+	}
+
+	.body-art {
+		background-color: #3f1d38;
+	}
+
+    .switch-body {
+        border-radius: 2rem;
+    }
+
+    .switch-body > p {
+        color: #3f1d38;
+    }
+
+	@media (max-width: 992px) {
+		.dev-header {
+			padding: 0 2.5%;
+		}
+
+		.social-a {
+			margin-left: 1.2rem;
+		}
+
+		.body-container {
+			padding: 0 1.5rem;
+		}
+
+		.dev-block {
+			padding: 0;
+		}
+
+		.header-item {
+			margin-left: 1rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.header-div {
+			display: none;
+		}
+
+		.header-button {
+			margin-left: 1rem;
+			display: block;
+		}
+
+		.body-container {
+			padding: 0 1rem;
+		}
+
+		.dev-block {
+			height: fit-content;
+			flex-direction: column-reverse;
+			padding: 0;
+			padding-bottom: 1.6rem;
+            gap: 0;
+            margin: 0;
+		}
+
+		.block-text {
+			height: fit-content;
+			width: 100%;
+		}
+
+		.block-desc {
+			margin-top: 0;
+		}
+
+		.block-pic {
+            max-height: clamp(50%, 35vh, 100%);
+			width: 90%;
+            aspect-ratio: 1.35;
+		}
+
+		.block-ingredients {
+			padding: 1rem;
+		}
+
+		.block-name {
+			font-size: var(--font-h2);
+			margin-bottom: 0.2rem;
+		}
+
+		.header-mobile-div {
+			display: flex;
+		}
+
+		form > button {
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: var(--font-h2);
+			padding: 0 calc(var(--font-h2) * 1);
+			line-height: calc(var(--font-h1) * 1.5);
+		}
+	}
+
+	@media (max-width: 576px) {
+		.body-container {
+			padding: 0 1rem;
+		}
+
+		.dev-block {
+			padding-bottom: 1rem;
+		}
+
+		.block-pic {
+			max-height: clamp(50%, 25vh, 100%);
+			width: 100%;
+		}
+	}
+</style>

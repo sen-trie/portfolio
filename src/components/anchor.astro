@@ -1,0 +1,20 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="scroll-anchor" id={id}></div>
+
+<style>
+	.scroll-anchor {
+		display: block;
+		content: '';
+		height: 100px;
+		margin-top: -100px;
+		visibility: hidden;
+		pointer-events: none;
+	}
+</style>

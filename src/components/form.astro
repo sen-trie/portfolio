@@ -1,0 +1,47 @@
+<script lang="ts">
+</script>
+
+<style>
+	.body-receipt {
+        height: unset;
+		padding-bottom: 5rem;
+		background-color: #4d3c77;
+	}
+
+    .body-container {
+        padding: 0 1.5rem;
+        max-width: calc(900px + 1.5rem);
+    }
+
+    form > button {
+		margin-top: 1rem;
+		background-color: #e19898;
+		color: var(--light-text);
+		font-size: var(--font-h3);
+		padding: 0 calc(var(--font-h2) * 0.75);
+		line-height: calc(var(--font-h2) * 1.5);
+		transition: calc(var(--trans-time) / 2) ease;
+	}
+
+	form > button:hover {
+		background-color: var(--light-text);
+		color: #e19898;
+	}
+</style>
+
+<div class="body-receipt dev-body-block">
+    <div class="body-container">
+        <h1>Say Hi!</h1>
+        <form action="https://formsubmit.co/backupsentrie@gmail.com" method="POST" class="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name / Contact" value="" />
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject" value="" />
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="user@example.com" value="" />
+            <label for="message">Message</label>
+            <textarea rows="6" id="body" name="message" placeholder="Tell me more!"></textarea>
+            <button type="submit" id="submit">Send</button>
+        </form>
+    </div>
+</div>

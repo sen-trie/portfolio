@@ -7,27 +7,28 @@ import '../global.css'
 		return;
 	}
 </script>
-	<div class="home-div" id="homeDiv">
-		<div class="home-header" id="homeHeader">
-			<p id="home-text">
-				Welcome to my page
-				<br />
-				I AM SENTRIE
-			</p>
-		</div>
-		<div class="body-side body-left" onClick={() => {homeClick('dev')}}>
-			<p id="bodyLeft">
-				Visit dev to read the documentation
-			</p>
-			<div class="body-img"></div>
-		</div>
-		<div class="body-side body-right" onClick={() => {homeClick('art')}}>
-			<p id="bodyRight">
-				Visit art to read the documentation
-			</p>
-			<div class="body-img"></div>
-		</div>
+
+<div class="home-div" id="homeDiv">
+	<div class="home-header" id="homeHeader">
+		<p id="home-text">
+			Welcome to my page
+			<br />
+			I AM SENTRIE
+		</p>
 	</div>
+	<div class="body-side body-left" onClick={() => {homeClick('dev')}}>
+		<p id="bodyLeft">
+			Visit dev to read the documentation
+		</p>
+		<div class="body-img"></div>
+	</div>
+	<div class="body-side body-right" onClick={() => {homeClick('art')}}>
+		<p id="bodyRight">
+			Visit art to read the documentation
+		</p>
+		<div class="body-img"></div>
+	</div>
+</div>
 
 <style>
 	.home-header {
