@@ -45,7 +45,7 @@
     --dark-title: #e19898;
     --dark-text: #eedaea;
     --light-body: #dbf2ff;
-    --light-title: #0a669b;
+    --light-title: #eed695;
     --light-text: #363636;
     --font-h1: clamp(1.8rem, 1.5692rem + 1.238vw, 2.3rem);
     --font-h1-5: clamp(1.6rem, 1.3692rem + 1.138vw, 2.15rem);
@@ -196,8 +196,10 @@ a:hover {
 }
 
 .body-left > .body-img {
+    left: unset;
+    right: 0;
+    animation: scrolling-inverse 10s linear infinite;
     background: url(./assets/dev_tile.png);
-    background-position: 100% 0%;
 }
 
 .body-right > .body-img {
@@ -381,6 +383,15 @@ textarea {
     }
     100% {
         transform: translateX(-400px);
+    }
+}
+
+@keyframes scrolling-inverse {
+    0% {
+        transform: translateX(400px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }
 

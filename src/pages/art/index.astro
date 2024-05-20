@@ -60,7 +60,7 @@ import proj4 from "../../assets/proj4.png";
 		} else {
 			bodyLeftImg.style.background = 'var(--dark-body)';
 			bodyRight.style.transform = 'translateX(50%)';
-			homeHeader.style.height = '160px';
+			// homeHeader.style.height = '160px';
 			triggerNavigation(moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain));
 		}
 	}
@@ -142,7 +142,7 @@ import proj4 from "../../assets/proj4.png";
   	});
 </script>
 
-<Meta title="SENTRIE/DEV">
+<Meta title="SENTRIE/DEV" animOut="slideRight">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
@@ -206,8 +206,8 @@ import proj4 from "../../assets/proj4.png";
 					</button>
 				</div>
 				<div class="body-top dev-body-block">
-					<Image loading="eager" src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image loading="eager" src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+					<Image src={izakayaBg}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image src={izakaya}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -309,6 +309,10 @@ import proj4 from "../../assets/proj4.png";
 </Meta>
 
 <style>
+	html {
+    	background: #1D413C;
+	}
+
 	h1 {
 		margin-bottom: 0.2rem;
 	}

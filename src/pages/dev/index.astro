@@ -58,9 +58,9 @@ import proj4 from "../../assets/proj4.png";
 			bodyLeft.style.transform = 'translateX(-100%)';
 			triggerNavigation(moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain));
 		} else {
-			bodyRightImg.style.background = 'var(--light-body)';
+			bodyRightImg.style.background = '#09201d';
 			bodyLeft.style.transform = 'translateX(-50%)';
-			homeHeader.style.height = '160px';
+			// homeHeader.style.height = '160px';
 			triggerNavigation(moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain));
 		}
 	}
@@ -143,7 +143,7 @@ import proj4 from "../../assets/proj4.png";
 </script>
 
 
-<Meta title="SENTRIE/DEV">
+<Meta title="SENTRIE/DEV" animOut="slideLeft">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
@@ -202,8 +202,8 @@ import proj4 from "../../assets/proj4.png";
 					</button>
 				</div>
 				<div class="body-top dev-body-block">
-					<Image loading="eager" src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image loading="eager" src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+					<Image  src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image  src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -309,6 +309,11 @@ import proj4 from "../../assets/proj4.png";
 </Meta>
 
 <style>
+	html {
+		/* url(/src/assets/dev_tile.png) */
+    	background: #3f1d38;
+	}
+
 	h1 {
 		margin-bottom: 0.2rem;
 	}

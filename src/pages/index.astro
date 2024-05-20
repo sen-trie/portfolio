@@ -16,7 +16,7 @@ import Meta from '../layouts/layout.astro';
 		const homeText = document.getElementById("homeText");
 
 		if (transitionFirst) {
-			homeHeader.style.height = '0';
+			homeHeader.style.transform = 'scaleY(0)';
 			homeText.style.opacity = '0';
 			altDomain === 'dev' ? (bodyRight.style.opacity = '0') : (bodyLeft.style.opacity = '0');
 			bodyLeft.innerText = 'Loading...';
@@ -56,14 +56,14 @@ import Meta from '../layouts/layout.astro';
 	init();
 
 	document.addEventListener('astro:after-swap', () => {
-		const regex = /\/portfolio$/;
+		const regex = /\/portfolio(\/+)?$/;
 		if (regex.test(window.location.href)) {
 			init();
 		}
   	});
 </script>
 
-<Meta title="SENTRIE'S PORTFOLIO">
+<Meta title="SENTRIE'S PORTFOLIO" animOut="slideDown">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
@@ -88,20 +88,32 @@ import Meta from '../layouts/layout.astro';
 </Meta>
 
 <style>
+	html::before {
+		position: absolute;
+		content: '';
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, var(--dark-body) 50%, #09201d 50% 50%);
+	}
+
 	.home-header {
+		transform-origin: top;
 		pointer-events: none;
 		position: absolute;
 		top: 15%;
 		height: 160px;
 		transition: var(--trans-time) ease;
-		background: linear-gradient(90deg, var(--light-body) 50%, var(--dark-body) 50%);
+		background: linear-gradient(90deg, #09201d 50%, var(--dark-body) 50%);
 	}
 
 	.home-header > p {
 		width: auto;
 		height: auto;
-		background: linear-gradient(90deg, var(--dark-body) 50%, var(--light-body) 50%);
+		background: linear-gradient(90deg, #f7e0e0 50%, var(--light-body) 50%);
 		background-clip: text;
+		text-align: center;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}

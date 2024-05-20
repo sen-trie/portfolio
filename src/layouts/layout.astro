@@ -1,18 +1,19 @@
 ---
-import { ViewTransitions, fade } from 'astro:transitions';
-const { title } = Astro.props;
+import { ViewTransitions } from 'astro:transitions';
+const { title, animOut = 'fadeIn', animIn = 'fadeOut' } = Astro.props;
+
 const anim = {
   old: {
-    name: 'fadeIn',
-    duration: '0.2s',
+    name: animIn,
+    duration: '500ms',
     easing: 'linear',
-    fillMode: 'forwards',
+    fillMode: 'both',
   },
   new: {
-    name: 'fadeOut',
-    duration: '0.3s',
-    easing: 'linear',
-    fillMode: 'backwards',
+    name: animOut,
+    duration: '500ms',
+    easing: 'ease-out',
+    fillMode: 'both',
   }
 };
 
@@ -20,7 +21,48 @@ const myFade = {
   forwards: anim,
   backwards: anim,
 };
+
 ---
+
+<style is:global>
+@keyframes fadeOut {
+  0% {
+    filter: blur(0);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+</style>
 
 <html>
     <head>
@@ -29,7 +71,7 @@ const myFade = {
         <title> { title } </title>
         <ViewTransitions />
     </head>
-    <body transition:animate={fade({ duration: '0.4s' })}> 
+    <body transition:animate={myFade}> 
         <slot />
     </body>
 </html>
