@@ -13,6 +13,8 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/ts-plugin": "^1.8.0",
     "astro": "^4.8.6",
+    "astro-purgecss": "^4.1.1",
+    "purgecss": "^6.0.0",
     "typescript": "^5.4.5"
   }
 }

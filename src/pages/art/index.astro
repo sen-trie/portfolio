@@ -5,20 +5,21 @@ import Anchor from '../../components/anchor.astro'
 import Form from '../../components/form.astro';
 import ProfileButton from '../../components/profileLogo.astro';
 import Footer from '../../components/footer.astro';
-import { githubRepo } from '../../shared.js'
+import LinkPic from '../../components/linkPic.astro';
 import { Image } from 'astro:assets';
 import pp from "../../assets/art_pp.png";
 import izakayaBg from "../../assets/bamboo_bg.png";
 import izakaya from "../../assets/izakaya.png";
-import html from "../../assets/html.png";
-import css from "../../assets/css.png";
-import js from "../../assets/javascript.png";
-import matlab from "../../assets/matlab.png";
-import react from "../../assets/react.png";
-import proj1 from "../../assets/proj1.png";
-import proj2 from "../../assets/proj2.png";
-import proj3 from "../../assets/proj3.png";
-import proj4 from "../../assets/proj4.png";
+import pic1 from "../../assets/pic1.png";
+import pic2 from "../../assets/pic2.png";
+import pic3 from "../../assets/pic3.png";
+import pic4 from "../../assets/pic4.png";
+import pic5 from "../../assets/pic5.png";
+import pic6 from "../../assets/pic6.png";
+import pic7 from "../../assets/pic7.png";
+import pic8 from "../../assets/pic8.png";
+import pic9 from "../../assets/pic9.png";
+import pic10 from "../../assets/pic10.png";
 ---
 <script>
 	import { moveSite } from '../../shared.js'
@@ -93,6 +94,14 @@ import proj4 from "../../assets/proj4.png";
 		}
 	}
 
+	function shuffle(array : Array<Element>) {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+		return array;
+	};
+
 	function init() {
 		transitionFirst = true;
 
@@ -119,6 +128,13 @@ import proj4 from "../../assets/proj4.png";
 				handleMenu();
 			});
 		});
+
+		const artGrid = document.getElementById('artGrid');
+		if (artGrid) {
+			const shuffledChildren = shuffle(Array.from(artGrid.children));
+			artGrid.innerHTML = '';
+			shuffledChildren.forEach(child => artGrid.appendChild(child));
+		}
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
@@ -229,64 +245,37 @@ import proj4 from "../../assets/proj4.png";
 				<div class="body-menu dev-body-block">
 					<div class="body-container">
 						<h1>Graphics</h1>
-						<div class="dev-block-tile">
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">nahidaQuest!</p>
-									<p class="block-desc">
-										An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on
-										modern desktop and mobile browsers.
-									</p>
-									<div class="block-ingredients">
-										<Image src={html} alt="HTML Icon" />
-										<Image src={css} alt="CSS Icon" />
-										<Image src={js} alt="Javascript Icon" />
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/nahidaQuest`} target="_blank">
-									<Image src={proj1} alt="nahidaQuest Project" />
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">2D Heat Diffusion</p>
-									<p class="block-desc">
-										Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
-										partial differential equation and visualizes the solution as a heatmap.
-									</p>
-									<div class="block-ingredients">
-										<Image src={matlab} alt="Matlab Icon"/>
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/2d-heat-diffusion`} target="_blank">
-									<Image src={proj2} alt="Matlab Project"/>
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">The Lair</p>
-									<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
-									<div class="block-ingredients">
-										<Image src={js} alt="Javascript Icon" />
-										<Image src={react} alt="React Icon" />
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/shopping-cart`} target="_blank">
-									<Image src={proj3} alt="Storefront Project" />
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">CV Maker</p>
-									<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
-									<div class="block-ingredients">
-										<Image src={js} alt="Javascript Icon" />
-										<Image src={react} alt="React Icon" />
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/cv-project`} target="_blank">
-									<Image src={proj4} alt="CV Maker Project" />
-								</a>
+						<div class="art-grid" id="artGrid">
+							<Image class="art-grid-item" src={pic1} loading="lazy" width="2576" height="1574" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic2} loading="lazy" width="1535" height="861" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic3} loading="lazy" width="3840" height="2160" alt='izakaya_bg'/>
+							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}>
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="72" height="72" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+									<path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+									<path d="M11 13l9 -9" />
+									<path d="M15 4h5v5" />
+								  </svg>
+							</LinkPic>
+							<Image class="art-grid-item" src={pic5} loading="lazy" width="3590" height="2019" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic6} loading="lazy" width="1845" height="1038" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic7} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic8} loading="lazy" width="1905" height="1072" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic9} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
+							<Image class="art-grid-item" src={pic10} loading="lazy" width="2162" height="1496" alt='izakaya_bg'/>
+							<div class="art-grid-div art-grid-item">
+								<Image src={izakaya} loading="lazy" width="3000" height="1200" alt='izakaya_bg'/>
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="72" height="72" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+									<path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
+									<path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
+									<path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5" />
+									<path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7l-.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" />
+									<path d="M5 3l-1 -1" />
+									<path d="M4 7h-1" />
+									<path d="M14 3l1 -1" />
+									<path d="M15 6h1" />
+								  </svg>
 							</div>
 						</div>
 					</div>
@@ -433,7 +422,7 @@ import proj4 from "../../assets/proj4.png";
 		height: 90px;
 	}
 
-	.icon-tabler:hover {
+	.social-share-btn > .icon-tabler:hover {
 		filter: brightness(200%)
 	}
 
@@ -544,7 +533,7 @@ import proj4 from "../../assets/proj4.png";
 	.block-name {
 		font-size: var(--font-h2);
 	}
-	/* #c1ddb4 */
+
 	.block-desc {
 		color: #f7e0e0;
 		font-weight: 200;
@@ -602,6 +591,44 @@ import proj4 from "../../assets/proj4.png";
 		background-color: #27271b;
 	}
 
+	.art-grid {
+		position: relative;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		overflow-x: hidden;
+        gap: 10px;
+		max-height: 80vh;
+		height: fit-content;
+		background-color: rgba(0, 0, 0, 0.35);
+		border-radius: 0.25rem;
+	}
+
+	.art-grid-div > img {
+		height: inherit;
+		width: auto;
+	}
+
+	.art-grid-div > svg {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		filter: drop-shadow(0 0 0.2rem #eed695);
+	}
+
+	:global(.art-grid-item) {
+		position: relative;
+		z-index: 2;
+		height: 275px;
+        width: auto;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+	}
+
 	@media (max-width: 992px) {
 		.dev-header {
 			padding: 0 2.5%;
@@ -609,6 +636,18 @@ import proj4 from "../../assets/proj4.png";
 
 		.social-a {
 			margin-left: 1.2rem;
+		}
+
+		.body-menu > .body-container {
+			padding: 0 0.5rem;
+		}
+
+		.art-grid {
+			max-height: 60vh;
+		}
+
+		:global(.art-grid-item ) {
+			height: 175px;
 		}
 
 		.body-container {
@@ -625,6 +664,17 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	@media (max-width: 768px) {
+		.art-grid {
+			flex-direction: column;
+			overflow-x: auto;
+			max-height: 70vh;
+			justify-content: flex-start;
+		}
+
+		:global(.art-grid-item) {
+			height: 125px;
+		}
+
 		.header-div {
 			display: none;
 		}

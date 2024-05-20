@@ -1,7 +1,17 @@
 import { defineConfig } from 'astro/config';
 
+import purgecss from "astro-purgecss";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://sen-trie.github.io/portfolio',
   base: 'portfolio',
+  integrations: [
+    purgecss({
+      keyframes: false, 
+      safelist: {
+        greedy: [/*astro*/]
+      }
+    })
+  ]
 });

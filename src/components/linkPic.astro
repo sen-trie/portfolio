@@ -1,0 +1,48 @@
+---
+import Image from 'astro/components/Image.astro';
+export interface Props {
+  url: string;
+  dim: Array<number>;
+  img: ImageMetadata;
+}
+
+const { url, dim, img } = Astro.props;
+---
+
+<style is:global>
+    .art-grid-div > div {
+        position: relative;
+    }
+
+    .art-grid-div img {
+		height: inherit;
+		width: auto;
+	}
+
+	.art-grid-div svg {
+        transform-origin: bottom right;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		filter: drop-shadow(0 0 0.2rem #eed695);
+	}
+
+    @media (max-width: 992px) {
+        .art-grid-div svg {
+            transform: scale(0.75);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .art-grid-div svg {
+            transform: scale(0.5);
+        }
+    }
+</style>
+
+<a class="art-grid-div art-grid-item" href={ url } target="_blank">
+    <div>
+        <Image src={ img } loading="lazy" width={dim[0]} height={dim[1]} alt=''/>
+        <slot />
+    </div>
+</a>
