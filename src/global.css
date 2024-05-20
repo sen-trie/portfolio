@@ -280,6 +280,14 @@ a:hover {
     transition: 0.3s ease;
 }
 
+.body-top {
+    display: block;
+    position: relative;
+    height: 100% !important;
+    width: 100%;
+    overflow: hidden;
+}
+
 .header-mobile-div > button:hover {
     background-color: #4d3c77;
 }
@@ -397,13 +405,38 @@ textarea {
 
 @media (max-width: 992px) {
     .body-img {
-        animation: scrolling 10s linear infinite;
+        animation: scrolling 20s linear infinite;
+    }
+
+    .body-left > .body-img {
+        animation: scrolling-inverse 20s linear infinite;
+    }
+
+	.body-top {
+		height: 90% !important;
+	}
+}
+
+@media (max-width: 768px) {
+    .header-button {
+        margin-left: 1rem;
+        margin-right: 2rem;
+        display: block;
+    }
+
+    .social-share-btn {
+        margin-right: unset;
+    }
+
+    .dev-header-right {
+        width: 50% !important;
+        justify-content: space-between;
     }
 }
 
 @media (max-width: 576px) {
     .header-mobile-div {
-        width: 45%;
+        width: 65%;
         padding: 100px 0.75rem;
     }
 
@@ -414,4 +447,12 @@ textarea {
     .body-img {
         animation: scrolling 30s linear infinite;
     }
+
+    .body-left > .body-img {
+        animation: scrolling-inverse 30s linear infinite;
+    }
+
+    .body-top {
+		height: 75% !important;
+	}
 }
