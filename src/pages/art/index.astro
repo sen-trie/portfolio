@@ -22,75 +22,65 @@ import proj4 from "../../assets/proj4.png";
 ---
 <script>
 	import { moveSite } from '../../shared.js'
+	import { triggerNavigation } from '../../components/triggerNavigation';
+	let transitionFirst = true;
 
 	window.onload = function() {
 		const form = document.getElementById("form");
 		if(form) (form as HTMLFormElement).reset(); 
     };
 
-	const profileButton = document.getElementById('profileLogo');
-	profileButton.addEventListener('click', () => {
-		goDev('home');
-	});
-
-	const devButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
-	devButtons.forEach((button) => {
-		button.addEventListener('click', () => {
-			goDev('dev');
-		});
-	});
-
-	const menuButtons = document.querySelectorAll('.header-button, .header-mobile-div');
-	menuButtons.forEach((button) => {
-		button.addEventListener('click', () => {
-			handleMenu();
-		});
-	});
-	
-	let homeDiv = document.getElementById('homeDiv');
-	let homeHeader = document.getElementById('homeHeader');
-	let homeText = document.getElementById('homeText');
-	let bodyLeft = document.getElementById('bodyLeft');
-	let bodyLeftImg = document.getElementById('bodyLeftImg');
-	let bodyRight = document.getElementById('bodyRight');
-	let devHeader = document.getElementById('devHeader');
-	let transitionFirst = true;
-	let headerMobile = document.getElementById('headerMobile');
-	headerMobile.style.zIndex = "-1";
-	let coverDiv = document.getElementById('coverDiv');
-	coverDiv.style.opacity = "0";
-
 	function goDev(altDomain: string) {
-		if (transitionFirst) {
-			headerMobile.style.transform = 'translateX(100%)';
-			devHeader.style.opacity = '0';
-			coverDiv.style.opacity = "1";
+		if (!transitionFirst) return;
 
-			bodyLeftImg.style.animation = 'none';
-			bodyLeftImg.offsetHeight;
-			bodyLeftImg.style.animation = '';
-			bodyLeftImg.style.animationDelay = '-7s';
+		const homeDiv = document.getElementById('homeDiv');
+		const homeHeader = document.getElementById('homeHeader');
+		const homeText = document.getElementById('homeText');
+		const bodyLeft = document.getElementById('bodyLeft');
+		const bodyLeftImg = document.getElementById('bodyLeftImg');
+		const bodyRight = document.getElementById('bodyRight');
+		const devHeader = document.getElementById('devHeader');
+		const headerMobile = document.getElementById('headerMobile');
+		const coverDiv = document.getElementById('coverDiv');
 
-			if (altDomain === 'dev') {
-				bodyLeft.innerText = 'Loading...';
-				bodyRight.style.transition = 'transform 800ms ease';
-				bodyRight.style.transform = 'translateX(100%)';
-				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain);
-			} else {
-				bodyLeftImg.style.background = 'var(--dark-body)';
-				bodyRight.style.transform = 'translateX(50%)';
-				homeHeader.style.height = '160px';
-				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain);
-			}
+		headerMobile.style.transform = 'translateX(100%)';
+		devHeader.style.opacity = '0';
+		coverDiv.style.opacity = "1";
+
+		bodyLeftImg.style.animation = 'none';
+		bodyLeftImg.offsetHeight;
+		bodyLeftImg.style.animation = '';
+		bodyLeftImg.style.animationDelay = '-7s';
+
+		if (altDomain === 'dev') {
+			bodyLeft.innerText = 'Loading...';
+			bodyRight.style.transition = 'transform 800ms ease';
+			bodyRight.style.transform = 'translateX(100%)';
+			triggerNavigation(moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain));
+		} else {
+			bodyLeftImg.style.background = 'var(--dark-body)';
+			bodyRight.style.transform = 'translateX(50%)';
+			homeHeader.style.height = '160px';
+			triggerNavigation(moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain));
 		}
-		transitionFirst = false;
 	}
 
 	function handleMenu() {
+		const headerMobile = document.getElementById('headerMobile');
 		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
 	}
 
-	document.addEventListener('keydown', (event: KeyboardEvent) => {
+
+	function parallax(e: MouseEvent, multiplier: number) {
+		let _w = window.innerWidth / 2;
+		let _h = window.innerHeight / 2;
+		let _mouseX = e.clientX;
+		let _mouseY = e.clientY;
+		let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
+		return `translate(${_depth1}) scale(1.1)`;
+	}
+
+	function keyNav(event: KeyboardEvent) {
 		switch (event.key) {
 			case 'Escape':
 				goDev('home');
@@ -101,23 +91,55 @@ import proj4 from "../../assets/proj4.png";
 			default:
 				break;
 		}
-	});
-
-	const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
-	const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
-	document.addEventListener('mousemove', (event: MouseEvent) => {
-		izakayaMain.style.transform = parallax(event, 1.4);
-		izakayaBg.style.transform = parallax(event, 1);
-	});
-
-	function parallax(e: MouseEvent, multiplier: number) {
-		let _w = window.innerWidth / 2;
-		let _h = window.innerHeight / 2;
-		let _mouseX = e.clientX;
-		let _mouseY = e.clientY;
-		let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
-		return `translate(${_depth1}) scale(1.1)`;
 	}
+
+	function init() {
+		transitionFirst = true;
+
+		const headerMobile = document.getElementById('headerMobile');
+		headerMobile.style.zIndex = "-1";
+		const coverDiv = document.getElementById('coverDiv');
+		coverDiv.style.opacity = "0";
+
+		const profileButton = document.getElementById('profileLogo');
+		profileButton.addEventListener('click', () => {
+			goDev('home');
+		});
+
+		const devButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
+		devButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				goDev('dev');
+			});
+		});
+
+		const menuButtons = document.querySelectorAll('.header-button, .header-mobile-div');
+		menuButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				handleMenu();
+			});
+		});
+
+		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
+		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
+		document.addEventListener('mousemove', (event: MouseEvent) => {
+			izakayaMain.style.transform = parallax(event, 1.4);
+			izakayaBg.style.transform = parallax(event, 1);
+		});
+
+		document.addEventListener('keydown', keyNav);
+		document.addEventListener('astro:before-swap', () => {
+			document.removeEventListener('keydown', keyNav);
+		}, { once: true });
+	}
+
+	init();
+
+	document.addEventListener('astro:after-swap', () => {
+		if (window.location.href.includes("/art")) {
+			init();
+		}
+  	});
 </script>
 
 <Meta title="SENTRIE/DEV">

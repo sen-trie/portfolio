@@ -1,4 +1,4 @@
-export function moveSite(
+export async function moveSite(
 	coverDiv: HTMLElement,
 	homeDiv: HTMLElement,
 	bodyRight: HTMLElement,
@@ -6,7 +6,7 @@ export function moveSite(
 	clickHome: boolean,
 	altDomain: string,
 	sideMove = false
-): void {
+): Promise<string> {
 	const endGrid: string = altDomain === 'dev' ? '10fr 0fr' : '0fr 10fr';
 	if (altDomain === 'dev') {
 		bodyLeft.innerText = 'Loading...';
@@ -20,13 +20,16 @@ export function moveSite(
 
 	coverDiv.style.opacity = '1';
 
-	setTimeout(
-		() => {
-			const baseUrl = import.meta.env.MODE === 'development' ? import.meta.env.BASE_URL : 'https://sen-trie.github.io/portfolio';
-			window.location.href = clickHome ?  baseUrl : `${baseUrl}/${altDomain}`;
-		},
-		clickHome ? 460 : 800
-	);
+	const baseUrl = import.meta.env.MODE === 'development' ? import.meta.env.BASE_URL : 'https://sen-trie.github.io/portfolio';
+	return new Promise((resolve) => {
+		setTimeout(
+			() => {
+				const url = clickHome ? baseUrl : `${baseUrl}/${altDomain}`;
+				resolve(url);
+			},
+			clickHome ? 460 : 800
+		);
+	});
 }
 
 export const githubRepo = 'https://github.com/sen-trie';

@@ -1,6 +1,25 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions, fade } from 'astro:transitions';
 const { title } = Astro.props;
+const anim = {
+  old: {
+    name: 'fadeIn',
+    duration: '0.2s',
+    easing: 'linear',
+    fillMode: 'forwards',
+  },
+  new: {
+    name: 'fadeOut',
+    duration: '0.3s',
+    easing: 'linear',
+    fillMode: 'backwards',
+  }
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
 ---
 
 <html>
@@ -10,7 +29,7 @@ const { title } = Astro.props;
         <title> { title } </title>
         <ViewTransitions />
     </head>
-    <body transition:animate="fade"> 
+    <body transition:animate={fade({ duration: '0.4s' })}> 
         <slot />
     </body>
 </html>

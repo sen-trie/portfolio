@@ -4,33 +4,29 @@ import Meta from '../layouts/layout.astro';
 ---
 
 <script>
+	import { triggerNavigation } from '../components/triggerNavigation';
 	import { moveSite } from "../shared";
-
-	const bodyLeftDiv = document.getElementById('bodyLeftDiv');
-	bodyLeftDiv.addEventListener('click', () => { homeClick('dev') });
-	const bodyRightDiv = document.getElementById('bodyRightDiv')
-	bodyRightDiv.addEventListener('click', () => { homeClick('art') });
-
-	let homeHeader = document.getElementById("homeHeader");
-	let bodyLeft = document.getElementById("bodyLeft");
-	let bodyRight = document.getElementById("bodyRight");
-	let homeDiv = document.getElementById("homeDiv");
-	let homeText = document.getElementById("homeText");
 	let transitionFirst = true;
 
 	function homeClick(altDomain: string) {
+		const homeHeader = document.getElementById("homeHeader");
+		const bodyLeft = document.getElementById("bodyLeft");
+		const bodyRight = document.getElementById("bodyRight");
+		const homeDiv = document.getElementById("homeDiv");
+		const homeText = document.getElementById("homeText");
+
 		if (transitionFirst) {
 			homeHeader.style.height = '0';
 			homeText.style.opacity = '0';
 			altDomain === 'dev' ? (bodyRight.style.opacity = '0') : (bodyLeft.style.opacity = '0');
 			bodyLeft.innerText = 'Loading...';
 			bodyRight.innerText = 'Loading...';
-			moveSite(homeHeader, homeDiv, bodyRight, bodyLeft, false, altDomain, true);
+			triggerNavigation(moveSite(homeHeader, homeDiv, bodyRight, bodyLeft, false, altDomain, true));
 		}
 		transitionFirst = false;
 	}
 
-	document.addEventListener('keydown', (event: KeyboardEvent) => {
+	function keyNav(event: KeyboardEvent) {
 		switch (event.key) {
 			case 'ArrowRight':
 				homeClick('art');
@@ -41,14 +37,36 @@ import Meta from '../layouts/layout.astro';
 			default:
 				break;
 		}
-	});
+	}
+
+	function init() {
+		transitionFirst = true;
+
+		const bodyLeftDiv = document.getElementById('bodyLeftDiv');
+		bodyLeftDiv.addEventListener('click', () => { homeClick('dev') });
+		const bodyRightDiv = document.getElementById('bodyRightDiv')
+		bodyRightDiv.addEventListener('click', () => { homeClick('art') });
+
+		document.addEventListener('keydown', keyNav);
+		document.addEventListener('astro:before-swap', () => {
+			document.removeEventListener('keydown', keyNav);
+  		}, { once: true });
+	}
+
+	init();
+
+	document.addEventListener('astro:after-swap', () => {
+		const regex = /\/portfolio$/;
+		if (regex.test(window.location.href)) {
+			init();
+		}
+  	});
 </script>
 
 <Meta title="SENTRIE'S PORTFOLIO">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
-				
 				Welcome to my page
 				<br />
 				I AM SENTRIE
@@ -56,7 +74,6 @@ import Meta from '../layouts/layout.astro';
 		</div>
 		<div class="body-side body-left" id="bodyLeftDiv">
 			<p id="bodyLeft">
-				<a href="./dev">Dev</a>
 				Visit dev to read the documentation
 			</p>
 			<div class="body-img"></div>

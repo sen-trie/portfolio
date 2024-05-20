@@ -56,11 +56,11 @@ const { col, butCol } = Astro.props;
             <label for="message">Message</label>
             <textarea rows="6" id="body" name="message" placeholder="Tell me more!" required/>
 
-            <div class="h-captcha fix-captcha" data-captcha="true"></div>
+            <div class="h-captcha fix-captcha" data-captcha="true" transition:persist></div>
 
             <button type="submit" id="submit">Send</button>
         </form>
     </div>
 </div>
 
-<script is:inline src="https://web3forms.com/client/script.js" async defer></script>
+<script transition:persist is:inline src="https://web3forms.com/client/script.js" async defer></script>
