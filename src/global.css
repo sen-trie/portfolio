@@ -346,12 +346,6 @@ textarea {
     resize: vertical;
 }
 
-input[type='text']:focus,
-textarea:focus {
-    border: 3px solid #e19898;
-    outline: none;
-}
-
 .switch-body {
     display: flex;
     margin: 2rem 0;
@@ -381,23 +375,6 @@ textarea:focus {
     left: 1rem;
 }
 
-.body-footer {
-    overflow: hidden;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background: #0d1117;
-}
-
-.body-footer > .body-container {
-    max-width: calc(1100px + 1.5rem) !important;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.body-footer p {
-    width: fit-content;
-}
-
 @keyframes scrolling {
     0% {
         transform: translateX(0);
@@ -408,10 +385,6 @@ textarea:focus {
 }
 
 @media (max-width: 992px) {
-    .body-footer > .body-container {
-        flex-direction: column;
-    }
-
     .body-img {
         animation: scrolling 10s linear infinite;
     }

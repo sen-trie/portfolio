@@ -4,10 +4,11 @@ import Meta from '../../layouts/layout.astro';
 import Anchor from '../../components/anchor.astro'
 import Form from '../../components/form.astro';
 import ProfileButton from '../../components/profileLogo.astro';
+import Footer from '../../components/footer.astro';
 import { githubRepo } from '../../shared.js'
 import { Image } from 'astro:assets';
-import devPp from "../../assets/dev_pp.png";
-import izakayaBg from "../../assets/izakaya_bg.png";
+import pp from "../../assets/art_pp.png";
+import izakayaBg from "../../assets/bamboo_bg.png";
 import izakaya from "../../assets/izakaya.png";
 import html from "../../assets/html.png";
 import css from "../../assets/css.png";
@@ -29,13 +30,13 @@ import proj4 from "../../assets/proj4.png";
 
 	const profileButton = document.getElementById('profileLogo');
 	profileButton.addEventListener('click', () => {
-		goDev('./home');
+		goDev('home');
 	});
 
 	const devButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
 	devButtons.forEach((button) => {
 		button.addEventListener('click', () => {
-			goDev('./dev');
+			goDev('dev');
 		});
 	});
 
@@ -64,7 +65,6 @@ import proj4 from "../../assets/proj4.png";
 			headerMobile.style.transform = 'translateX(100%)';
 			devHeader.style.opacity = '0';
 			coverDiv.style.opacity = "1";
-			bodyLeft.innerText = 'Loading...';
 
 			bodyLeftImg.style.animation = 'none';
 			bodyLeftImg.offsetHeight;
@@ -72,12 +72,13 @@ import proj4 from "../../assets/proj4.png";
 			bodyLeftImg.style.animationDelay = '-7s';
 
 			if (altDomain === 'dev') {
+				bodyLeft.innerText = 'Loading...';
 				bodyRight.style.transition = 'transform 800ms ease';
 				bodyRight.style.transform = 'translateX(100%)';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain);
 			} else {
-				bodyLeftImg.style.background = 'var(--light-body)';
-				bodyRight.style.transform = 'translateX(-50%)';
+				bodyLeftImg.style.background = 'var(--dark-body)';
+				bodyRight.style.transform = 'translateX(50%)';
 				homeHeader.style.height = '160px';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, true, altDomain);
 			}
@@ -137,7 +138,7 @@ import proj4 from "../../assets/proj4.png";
 			<div class="dev-header" id="devHeader">
 				<div class="dev-header-left">
 					<ProfileButton>
-						<Image src={devPp} alt="developer profile" class="profile-pic" />
+						<Image src={pp} alt="developer profile" class="profile-pic" />
 					</ProfileButton>
 					<div class="header-div">
 						<a class="header-item" href="./#about">ABOUT</a>
@@ -179,12 +180,12 @@ import proj4 from "../../assets/proj4.png";
 					<a class="header-mobile-item" href="./#graphics">GRAPHICS</a>
 					<a class="header-mobile-item" href="./#contact">CONTACT</a>
 					<button class="header-mobile-button">
-						ART →
+						← DEV
 					</button>
 				</div>
 				<div class="body-top dev-body-block">
-					<Image src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+					<Image loading="eager" src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image loading="eager" src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -270,22 +271,16 @@ import proj4 from "../../assets/proj4.png";
 				</div>
 				<div class="divider menu-divider dev-body-block"></div>
 				<Anchor id="contact" />
-				<Form col="#8B8EB2"/>
+				<Form col="#469C90" butCol="#eed695"/>
 				<div class="body-art dev-body-block">
 					<div class="body-container">
 						<button
 							class="switch-body">
-							SWITCH TO <br /> DAYTIME
+							SWITCH TO <br /> DEVTIME
 						</button>
 					</div>
 				</div>
-				<div class="body-footer dev-body-block">
-					<div class="body-container">
-						<p>© Copyright I_AM_SENTRIE</p>
-						<p>Made with Astro</p>
-						<p>backupsentrie@gmail.com</p>
-					</div>
-				</div>
+				<Footer fg="#f7e0e0" bg="#12120c" />
 			</div>
 		</div>
 	</div>
@@ -318,14 +313,41 @@ import proj4 from "../../assets/proj4.png";
 		-webkit-text-fill-color: transparent;
 	}
 
+	.header-button {
+		color: #eed695;
+	}
+
+	.header-mobile-div {
+		left: unset;
+		right: 0;
+	}
+
+	.header-mobile-div::after {
+		left: unset;
+		right: 100%;
+	}
+
+	.header-mobile-div > a, .header-mobile-div > button {
+		justify-content: flex-end;
+		text-align: center;
+	}
+		
+	.header-mobile-div > button {
+    	background-color: #0f3530;
+	}
+
+	.header-mobile-div > button:hover {
+    	background-color: #469C90;
+	}
+
 	.cover-div {
 		height: 100%;
-		background-color: var(--dark-body);
+		background-color: #0f3530;
 	}
 
 	.body-right {
 		position: relative;
-		background: #582f3b;
+		background: #0f3530;
 		scrollbar-color: #eed695 transparent;
 		overflow-y: auto;
 	}
@@ -408,12 +430,16 @@ import proj4 from "../../assets/proj4.png";
 		position: absolute;
 		bottom: 0;
 		margin-top: -5%;
-		background-image: url(../../assets/border_story.png);
+		background-image: url(../../assets/border_story_art.png);
 	}
 
 	.menu-divider {
-		background-color: #0d1117;
-		background-image: url(../../assets/border_receipt.png);
+		background-color: #27271b;
+		background-image: url(../../assets/border_form.png);
+	}
+
+	.header-mobile-div {
+		background-color: #eed695;
 	}
 
 	.body-top {
@@ -441,7 +467,7 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.body-story {
-		background-color: #469C90;
+		background-color: #1D413C;
 		padding-bottom: 55px;
 	}
 
@@ -453,7 +479,7 @@ import proj4 from "../../assets/proj4.png";
 	.body-menu {
 		padding: 1rem 0;
 		padding-top: 2.5rem;
-		background-image: linear-gradient(#4b7251, #3b5840);
+		background-image: linear-gradient(#3b1f1f, #27271b);
 	}
 
 	.body-menu > .body-container {
@@ -473,13 +499,13 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.dev-block {
-		color: black;
+		color: white;
 		flex-direction: row;
         justify-content: space-between;
 		margin-top: 1rem;
         margin-bottom: 1rem;
 		padding: 0 1rem 2rem 1rem;
-		border-bottom: solid black 0.2rem;
+		border-bottom: solid white 0.2rem;
 		height: 400px;
 		min-height: 350px;
 		gap: 1rem;
@@ -492,9 +518,9 @@ import proj4 from "../../assets/proj4.png";
 	.block-name {
 		font-size: var(--font-h2);
 	}
-
+	/* #c1ddb4 */
 	.block-desc {
-		color: var(--light-body);
+		color: #f7e0e0;
 		font-weight: 200;
 	}
 
@@ -532,19 +558,22 @@ import proj4 from "../../assets/proj4.png";
 	}
 
 	.body-art {
-		background-color: #469C90;
+		background-color: #1D413C;
 	}
 
     .switch-body {
+		background-color: #eed695;
+		color: #1D413C;
         border-radius: 2rem;
     }
 
-    .switch-body > p {
-        color: #3f1d38;
-    }
+	.switch-body:hover {
+		background-color: #0f221f;
+		color: #eed695;
+	}
 
 	.body-footer {
-		background-color: #3b5840;
+		background-color: #27271b;
 	}
 
 	@media (max-width: 992px) {

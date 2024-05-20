@@ -10,7 +10,7 @@ export function moveSite(
 	const endGrid: string = altDomain === 'dev' ? '10fr 0fr' : '0fr 10fr';
 	if (altDomain === 'dev') {
 		bodyLeft.innerText = 'Loading...';
-		bodyRight.style.overflowY = 'hidden';
+		//bodyRight.style.overflowY = 'hidden';
 		sideMove ? (homeDiv.style.gridTemplateColumns = clickHome ? '5fr 5fr' : endGrid) : null;
 	} else if (altDomain === 'art') {
 		bodyRight.innerText = 'Loading...';

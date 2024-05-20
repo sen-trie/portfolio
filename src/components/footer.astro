@@ -1,0 +1,43 @@
+---
+export interface Props {
+    fg: string;
+    bg: string,
+}
+
+const { fg, bg } = Astro.props;
+---
+
+<div class="body-footer dev-body-block">
+    <div class="body-container">
+        <p>© Copyright I_AM_SENTRIE</p>
+        <p>Made with Astro</p>
+        <p>backupsentrie@gmail.com</p>
+    </div>
+</div>
+
+<style define:vars={{ fg, bg }}>
+    .body-footer {
+        height: fit-content;
+        overflow: hidden;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        background: var(--bg);
+    }
+
+    .body-footer > .body-container {
+        max-width: calc(1100px + 1.5rem) !important;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .body-footer p {
+        width: fit-content;
+        color: var(--fg);
+    }
+
+    @media (max-width: 992px) {
+        .body-footer > .body-container {
+            flex-direction: column;
+        }
+    }
+</style>

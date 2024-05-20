@@ -3,6 +3,7 @@ import '../../global.css'
 import Meta from '../../layouts/layout.astro';
 import Anchor from '../../components/anchor.astro'
 import Form from '../../components/form.astro';
+import Footer from '../../components/footer.astro';
 import ProfileButton from '../../components/profileLogo.astro';
 import { githubRepo } from '../../shared.js'
 import { Image } from 'astro:assets';
@@ -29,13 +30,13 @@ import proj4 from "../../assets/proj4.png";
 
 	const profileButton = document.getElementById('profileLogo');
 	profileButton.addEventListener('click', () => {
-		goDev('./home');
+		goDev('home');
 	});
 
 	const artButtons = document.querySelectorAll('.header-mobile-button, .switch-body');
 	artButtons.forEach((button) => {
 		button.addEventListener('click', () => {
-			goDev('./art');
+			goDev('art');
 		});
 	});
 
@@ -64,7 +65,6 @@ import proj4 from "../../assets/proj4.png";
 			headerMobile.style.transform = 'translateX(-100%)';
 			devHeader.style.opacity = '0';
 			coverDiv.style.opacity = "1";
-			bodyRight.innerText = 'Loading...';
 
 			bodyRightImg.style.animation = 'none';
 			bodyRightImg.offsetHeight;
@@ -72,6 +72,7 @@ import proj4 from "../../assets/proj4.png";
 			bodyRightImg.style.animationDelay = '-7s';
 
 			if (altDomain === 'art') {
+				bodyRight.innerText = 'Loading...';
 				bodyLeft.style.transition = 'transform 800ms ease';
 				bodyLeft.style.transform = 'translateX(-100%)';
 				moveSite(coverDiv, homeDiv, bodyRight, bodyLeft, false, altDomain);
@@ -178,8 +179,8 @@ import proj4 from "../../assets/proj4.png";
 					</button>
 				</div>
 				<div class="body-top dev-body-block">
-					<Image src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
+					<Image loading="eager" src={izakayaBg} class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image loading="eager" src={izakaya} class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -265,22 +266,16 @@ import proj4 from "../../assets/proj4.png";
 				</div>
 				<div class="divider menu-divider dev-body-block"></div>
 				<Anchor id="contact" />
-				<Form col="#4d3c77"/>
+				<Form col="#4d3c77" butCol="#e19898" />
 				<div class="body-art dev-body-block">
 					<div class="body-container">
 						<button
 							class="switch-body">
-							SWITCH TO <br /> NIGHTTIME
+							SWITCH TO <br /> ARTTIME
 						</button>
 					</div>
 				</div>
-				<div class="body-footer dev-body-block">
-					<div class="body-container">
-						<p>© Copyright I_AM_SENTRIE</p>
-						<p>Made with Astro</p>
-						<p>backupsentrie@gmail.com</p>
-					</div>
-				</div>
+				<Footer fg="#dbf2ff" bg="#0d1117" />
 			</div>
 		</div>
 		<div class="body-side body-right">
@@ -452,7 +447,7 @@ import proj4 from "../../assets/proj4.png";
 	.body-menu {
 		padding: 1rem 0;
 		padding-top: 2.5rem;
-		background-image: linear-gradient(#0d1117, #0d1117);
+		background-image: linear-gradient(#1a333b, #0d1117);
 	}
 
 	.body-menu > .body-container {
