@@ -9,7 +9,14 @@ const { dim, vid, num } = Astro.props;
 </style>
 
 <div class="art-grid-div art-grid-item">
-    <video src={ vid } width={dim[0]} height={dim[1]} controls/>
+    <video 
+        src={`${vid}#t=0.1`}
+        width={dim[0]} 
+        height={dim[1]} 
+        controls
+        playsinline 
+        preload="metadata"
+    />
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="72" height="72" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
