@@ -6,10 +6,11 @@ import Form from '../../components/form.astro';
 import ProfileButton from '../../components/profileLogo.astro';
 import Footer from '../../components/footer.astro';
 import LinkPic from '../../components/linkPic.astro';
+import VideoPic from '../../components/videoPic.astro';
 import { Image } from 'astro:assets';
 import pp from "../../assets/art_pp.png";
-import izakayaBg from "../../assets/bamboo_bg.png";
-import izakaya from "../../assets/izakaya.png";
+import izakayaBg from "../../assets/izakaya_bg_art.png";
+import izakaya from "../../assets/izakaya_art.png";
 import pic1 from "../../assets/pic1.png";
 import pic2 from "../../assets/pic2.png";
 import pic3 from "../../assets/pic3.png";
@@ -20,6 +21,9 @@ import pic7 from "../../assets/pic7.png";
 import pic8 from "../../assets/pic8.png";
 import pic9 from "../../assets/pic9.png";
 import pic10 from "../../assets/pic10.png";
+import pic11 from "../../assets/pic11.mp4";
+import pic12 from "../../assets/pic12.mp4";
+import pic13 from "../../assets/pic13.mp4";
 ---
 <script>
 	import { moveSite } from '../../shared.js'
@@ -158,7 +162,7 @@ import pic10 from "../../assets/pic10.png";
   	});
 </script>
 
-<Meta title="SENTRIE/DEV" animOut="slideRight">
+<Meta title="SENTRIE - ART" animOut="slideRight">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
@@ -231,13 +235,12 @@ import pic10 from "../../assets/pic10.png";
 					<div class="body-container">
 						<h1>About</h1>
 						<p>
-							Hello! I like building and creating stuff on a computer. As a developer, I design and code with user
-							experience as the first priority. With a keen interest in web applications, I aim to develop cool and
-							appealing solutions.
+							Hello! I like building and creating stuff on a computer. I picked up 3D art from watching a few tutorials and I
+							have been enamored with it ever since. I mainly focus on 3D animation, though I do create static works
+							from time to time.
 							<br /><br />
-							With each project, I try to learn something new, whether it be a new technology (e.g a framework / programming
-							language) or a different method (e.g. 3d modelling techniques). This commitment to trying new things fuels my
-							progress, not just as a developer but as a human.
+							I specialize in character animation, as I find that creating a story through motion is the most fun. 
+							My primary tool for 3d work is Blender, with Davinci Resolve and Photo Affinity 2 to complement the render.
 						</p>
 					</div>
 				</div>
@@ -249,34 +252,16 @@ import pic10 from "../../assets/pic10.png";
 							<Image class="art-grid-item" src={pic1} loading="lazy" width="2576" height="1574" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic2} loading="lazy" width="1535" height="861" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic3} loading="lazy" width="3840" height="2160" alt='izakaya_bg'/>
-							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}>
-								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="72" height="72" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
-									<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-									<path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-									<path d="M11 13l9 -9" />
-									<path d="M15 4h5v5" />
-								  </svg>
-							</LinkPic>
+							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}/>
+							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[2880, 1206]} img={pic6}/>
 							<Image class="art-grid-item" src={pic5} loading="lazy" width="3590" height="2019" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic6} loading="lazy" width="1845" height="1038" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic7} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic8} loading="lazy" width="1905" height="1072" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic9} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
 							<Image class="art-grid-item" src={pic10} loading="lazy" width="2162" height="1496" alt='izakaya_bg'/>
-							<div class="art-grid-div art-grid-item">
-								<Image src={izakaya} loading="lazy" width="3000" height="1200" alt='izakaya_bg'/>
-								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="72" height="72" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
-									<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-									<path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
-									<path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
-									<path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5" />
-									<path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7l-.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" />
-									<path d="M5 3l-1 -1" />
-									<path d="M4 7h-1" />
-									<path d="M14 3l1 -1" />
-									<path d="M15 6h1" />
-								  </svg>
-							</div>
+							<VideoPic vid={pic11} dim={[3000, 1200]}/>
+							<VideoPic vid={pic12} dim={[3000, 1200]}/>
+							<VideoPic vid={pic13} dim={[3000, 1200]}/>
 						</div>
 					</div>
 				</div>
@@ -371,6 +356,10 @@ import pic10 from "../../assets/pic10.png";
 		height: fit-content;
 	}
 
+	.dev-body-block > .body-container {
+		gap: 1rem;
+	}
+
 	.body-left {
 		position: absolute;
 		top: 0;
@@ -458,7 +447,7 @@ import pic10 from "../../assets/pic10.png";
 	}
 
 	.izakaya-main {
-		filter: drop-shadow(0 0 0.35rem #a86eb877) drop-shadow(0 0 0.35rem #3d174763);
+		filter: drop-shadow(0 0 0.35rem #1d413c41) drop-shadow(0 0 0.35rem #1d413c85);
 	}
 
 	.izakaya {
@@ -490,7 +479,7 @@ import pic10 from "../../assets/pic10.png";
 	}
 
 	.body-menu > .body-container {
-		max-width: calc(1100px + 1.5rem);
+		max-width: 100%;
 	}
 
 	.dev-block-tile {
@@ -587,10 +576,9 @@ import pic10 from "../../assets/pic10.png";
 		position: relative;
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
-		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		justify-content: center;
 		overflow-x: hidden;
         gap: 10px;
 		max-height: 80vh;
@@ -602,13 +590,6 @@ import pic10 from "../../assets/pic10.png";
 	.art-grid-div > img {
 		height: inherit;
 		width: auto;
-	}
-
-	.art-grid-div > svg {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		filter: drop-shadow(0 0 0.2rem #eed695);
 	}
 
 	:global(.art-grid-item) {
@@ -660,7 +641,6 @@ import pic10 from "../../assets/pic10.png";
 			flex-direction: column;
 			overflow-x: auto;
 			max-height: 70vh;
-			justify-content: flex-start;
 		}
 
 		:global(.art-grid-item) {

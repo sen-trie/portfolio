@@ -67,20 +67,20 @@ import Meta from '../layouts/layout.astro';
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
 			<p id="homeText">
-				Welcome to my page
+				Welcome to the portolio 
 				<br />
-				I AM SENTRIE
+				of I AM SENTRIE
 			</p>
 		</div>
 		<div class="body-side body-left" id="bodyLeftDiv">
 			<p id="bodyLeft">
-				Visit dev to read the documentation
+				Visit dev side
 			</p>
 			<div class="body-img"></div>
 		</div>
 		<div class="body-side body-right" id="bodyRightDiv">
 			<p id="bodyRight">
-				Visit art to read the documentation
+				Visit art side
 			</p>
 			<div class="body-img"></div>
 		</div>
@@ -105,7 +105,7 @@ import Meta from '../layouts/layout.astro';
 	.home-header > p {
 		width: auto;
 		height: auto;
-		background: linear-gradient(90deg, #f7e0e0 50%, var(--light-body) 50%);
+		background: linear-gradient(90deg, #f7e0e0 50%, hsl(44, 78%, 87%) 50%);
 		background-clip: text;
 		text-align: center;
 		-webkit-background-clip: text;
@@ -115,5 +115,19 @@ import Meta from '../layouts/layout.astro';
 	body > div:last-of-type {
 		width: 100%;
 		height: 100%;
+	}
+
+	p {
+		width: fit-content;
+		height: fit-content;
+		padding: 0.3rem 0.6rem;
+	}
+
+	#bodyLeft {
+		background-color: var(--dark-body);
+	}
+
+	#bodyRight {
+		background-color: #09201d;
 	}
 </style>

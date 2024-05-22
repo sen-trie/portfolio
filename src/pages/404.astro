@@ -1,0 +1,112 @@
+---
+import '../global.css'
+import Meta from '../layouts/layout.astro';
+---
+
+<script>
+	import { triggerNavigation } from '../components/triggerNavigation';
+	import { moveSite } from "../shared";
+
+	function init() {
+	}
+
+	init();
+
+	document.addEventListener('astro:after-swap', () => {
+		const regex = /\/portfolio(\/+)?$/;
+		if (regex.test(window.location.href)) {
+			init();
+		}
+  	});
+</script>
+
+<Meta title="SENTRIE - ERROR" animOut="slideDown">
+	<div class="home-div" id="homeDiv">
+		
+		<div class="body-side body-left" id="bodyLeftDiv">
+			<div class="body-img"></div>
+		</div>
+		<div class="body-side body-right" id="bodyRightDiv">
+			<div class="body-img"></div>
+		</div>
+        <div class="home-header" id="homeHeader">
+			<p id="homeText">
+				<span style="font-size: 4rem; display:block">404</span>
+                Page not found!
+			</p>
+            <a id="returnText" href="./">
+                <button>
+                    <p>Return</p>
+                </button>
+            </a>
+		</div>
+	</div>
+</Meta>
+
+<style>
+	html {
+		background: linear-gradient(90deg, var(--dark-body) 50%, #09201d 50% 50%);
+	}
+
+    .body-side {
+        position: relative;
+        z-index: -1;
+    }
+
+	.home-header {
+		position: absolute;
+        z-index: 99;
+		top: 15%;
+		height: fit-content;
+        padding: 2rem 0;
+		background: linear-gradient(90deg, #09201d 50%, var(--dark-body) 50%);
+	}
+
+    span {
+        line-height: normal;
+    }
+
+	.home-header > p {
+		width: auto;
+		height: auto;
+		background: linear-gradient(90deg, #f7e0e0 50%, hsl(44, 78%, 87%) 50%);
+		background-clip: text;
+		text-align: center;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	
+	body > div:last-of-type {
+		width: 100%;
+		height: 100%;
+	}
+
+	p {
+		width: fit-content;
+		height: fit-content;
+		padding: 0.3rem 0.6rem;
+	}
+
+	#bodyLeft {
+		background-color: var(--dark-body);
+	}
+
+	#bodyRight {
+		background-color: #09201d;
+	}
+
+    #returnText > button {
+        border-radius: 0.25rem;
+        background: #363636;
+    }
+
+    #returnText p {
+        cursor: pointer;
+        font-size: var(--font-h1);
+        background: linear-gradient(90deg, #f7e0e0 50%, hsl(44, 78%, 87%) 50%);
+		background-clip: text;
+		text-align: center;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+    }
+</style>
