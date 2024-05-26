@@ -29,7 +29,7 @@ import vid12 from "../../assets/vid12.mp4";
 import vid13 from "../../assets/vid13.mp4";
 ---
 <script>
-	import { moveSite } from '../../shared.js'
+	import { moveSite, parallax, parallaxTouch } from '../../shared.js'
 	import { triggerNavigation } from '../../components/triggerNavigation';
 	let transitionFirst = true;
 
@@ -76,16 +76,6 @@ import vid13 from "../../assets/vid13.mp4";
 	function handleMenu() {
 		const headerMobile = document.getElementById('headerMobile');
 		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
-	}
-
-
-	function parallax(e: MouseEvent, multiplier: number) {
-		let _w = window.innerWidth / 2;
-		let _h = window.innerHeight / 2;
-		let _mouseX = e.clientX;
-		let _mouseY = e.clientY;
-		let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
-		return `translate(${_depth1}) scale(1.1)`;
 	}
 
 	function keyNav(event: KeyboardEvent) {
@@ -145,9 +135,16 @@ import vid13 from "../../assets/vid13.mp4";
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
+		const bodyTop : HTMLElement = document.getElementById('bodyTop');
 		document.addEventListener('mousemove', (event: MouseEvent) => {
 			izakayaMain.style.transform = parallax(event, 1.4);
 			izakayaBg.style.transform = parallax(event, 1);
+		});
+
+		bodyTop.addEventListener('touchmove', (event: TouchEvent) => {
+			event.preventDefault();
+			izakayaMain.style.transform = parallaxTouch(event, 1.4);
+			izakayaBg.style.transform = parallaxTouch(event, 1);
 		});
 
 		document.addEventListener('keydown', keyNav);
@@ -228,7 +225,7 @@ import vid13 from "../../assets/vid13.mp4";
 						← DEV
 					</button>
 				</div>
-				<div class="body-top dev-body-block">
+				<div class="body-top dev-body-block" id="bodyTop">
 					<Image src={izakayaBg}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
 					<Image src={izakaya}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />

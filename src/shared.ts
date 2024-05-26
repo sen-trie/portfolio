@@ -32,4 +32,22 @@ export async function moveSite(
 	});
 }
 
+export function parallaxTouch(e: TouchEvent, multiplier: number) {
+	let _w = window.innerWidth / 2;
+	let _h = window.innerHeight / 2;
+	let _mouseX = e.touches[0].clientX;
+	let _mouseY = e.touches[0].clientY;
+	let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
+	return `translate(${_depth1}) scale(1.1)`;
+}
+
+export function parallax(e: MouseEvent, multiplier: number) {
+	let _w = window.innerWidth / 2;
+	let _h = window.innerHeight / 2;
+	let _mouseX = e.clientX;
+	let _mouseY = e.clientY;
+	let _depth1 = `${(_mouseX - _w) * 0.01 * multiplier}px, ${(_mouseY - _h) * 0.04 * multiplier}px`;
+	return `translate(${_depth1}) scale(1.1)`;
+}
+
 export const githubRepo = 'https://github.com/sen-trie';

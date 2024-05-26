@@ -414,7 +414,7 @@ textarea {
     }
 
 	.body-top {
-		height: 90% !important;
+		height: 75% !important;
 	}
 }
 
@@ -433,6 +433,10 @@ textarea {
         width: 50% !important;
         justify-content: space-between;
     }
+
+    .body-top {
+		height: 70% !important;
+	}
 }
 
 @media (max-width: 576px) {
@@ -454,6 +458,6 @@ textarea {
     }
 
     .body-top {
-		height: 75% !important;
+		height: 60% !important;
 	}
 }
