@@ -110,6 +110,29 @@ import proj4 from "../../assets/proj4.png";
 			});
 		});
 
+		function handleGesure(touchstartX : number, touchendX : number) {
+			const diff = touchstartX - touchendX;
+			if (diff > (window.innerWidth / 2)) {
+				goDev('art');
+			}
+		}
+
+		const bodyLeft = document.getElementById('bodyLeft');
+		let touchstartX = 0;
+		let touchendX = 0;
+		bodyLeft.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyLeft.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyLeft.addEventListener('touchmove', (event: TouchEvent) => {
+			touchendX = event.touches[0].clientX;
+			handleGesure(touchstartX, touchendX);
+		}, false);
+
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
 		const bodyTop : HTMLElement = document.getElementById('bodyTop');

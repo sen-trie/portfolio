@@ -46,8 +46,6 @@ import vid4 from "../../assets/vid4.mp4";
 		if (!transitionFirst) return;
 
 		const homeDiv = document.getElementById('homeDiv');
-		const homeHeader = document.getElementById('homeHeader');
-		const homeText = document.getElementById('homeText');
 		const bodyLeft = document.getElementById('bodyLeft');
 		const bodyLeftImg = document.getElementById('bodyLeftImg');
 		const bodyRight = document.getElementById('bodyRight');
@@ -167,6 +165,32 @@ import vid4 from "../../assets/vid4.mp4";
 			});
 		});
 
+		function handleGesure(touchstartX : number, touchendX : number) {
+			const diff = touchstartX - touchendX;
+			if (diff < -1 * (window.innerWidth / 2)) {
+				goDev('dev');
+			}
+		}
+
+		const bodyRight = document.getElementById('bodyRight');
+		let touchstartX = 0;
+		let touchendX = 0;
+		bodyRight.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyRight.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyRight.addEventListener('touchmove', (event: TouchEvent) => {
+			touchendX = event.touches[0].clientX;
+			handleGesure(touchstartX, touchendX);
+		}, false);
+
+		artGrid.addEventListener('touchmove', (event: TouchEvent) => {
+			event.stopPropagation()
+		}, false);
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
@@ -625,7 +649,7 @@ import vid4 from "../../assets/vid4.mp4";
 		background-color: #1D413C;
 	}
 
-    .switch-body,{
+    .switch-body {
 		background-color: #eed695;
 		color: #1D413C;
         border-radius: 2rem;

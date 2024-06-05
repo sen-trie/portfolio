@@ -39,6 +39,16 @@ import Meta from '../layouts/layout.astro';
 		}
 	}
 
+	// DEFAULT LEFT TO RIGHT
+	function handleGesure(touchstartX : number, touchendX : number) {
+		const diff = touchstartX - touchendX;
+		if (diff < -100) {
+			homeClick('dev')
+		} else if (diff > 100) {
+			homeClick('art')
+		}
+	}
+
 	function init() {
 		transitionFirst = true;
 
@@ -46,6 +56,27 @@ import Meta from '../layouts/layout.astro';
 		bodyLeftDiv.addEventListener('click', () => { homeClick('dev') });
 		const bodyRightDiv = document.getElementById('bodyRightDiv')
 		bodyRightDiv.addEventListener('click', () => { homeClick('art') });
+
+		let touchstartX = 0;
+		let touchendX = 0;
+
+		bodyLeftDiv.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyRightDiv.addEventListener('touchstart', (event: TouchEvent) => {
+			touchstartX = event.touches[0].clientX;
+		}, false);
+
+		bodyLeftDiv.addEventListener('touchmove', (event: TouchEvent) => {
+			touchendX = event.touches[0].clientX;
+			handleGesure(touchstartX, touchendX);
+		}, false);
+
+		bodyRightDiv.addEventListener('touchmove', (event: TouchEvent) => {
+			touchendX = event.touches[0].clientX;
+			handleGesure(touchstartX, touchendX);
+		}, false);
 
 		document.addEventListener('keydown', keyNav);
 		document.addEventListener('astro:before-swap', () => {
