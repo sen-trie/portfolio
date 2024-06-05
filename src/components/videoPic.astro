@@ -5,10 +5,11 @@ const { dim, vid, num } = Astro.props;
     .art-grid-div video {
 		height: inherit;
 		width: auto;
+        cursor: pointer;
 	}
 </style>
 
-<div class="art-grid-div art-grid-item">
+<div class="art-grid-div art-grid-item art-short">
     <video 
         src={`${vid}#t=0.1`}
         width={dim[0]} 

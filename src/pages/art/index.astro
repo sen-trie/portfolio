@@ -24,9 +24,13 @@ import pic10 from "../../assets/pic10.png";
 import pic11 from "../../assets/pic11.png";
 import pic12 from "../../assets/pic12.png";
 import pic13 from "../../assets/pic13.png";
-import vid11 from "../../assets/vid11.mp4";
-import vid12 from "../../assets/vid12.mp4";
-import vid13 from "../../assets/vid13.mp4";
+import pic14 from "../../assets/pic14.jpg";
+import pic15 from "../../assets/pic15.png";
+import pic16 from "../../assets/pic16.png";
+import vid1 from "../../assets/vid1.mp4";
+import vid2 from "../../assets/vid2.mp4";
+import vid3 from "../../assets/vid3.mp4";
+import vid4 from "../../assets/vid4.mp4";
 ---
 <script>
 	import { moveSite, parallax, parallaxTouch } from '../../shared.js'
@@ -127,11 +131,42 @@ import vid13 from "../../assets/vid13.mp4";
 		});
 
 		const artGrid = document.getElementById('artGrid');
+		let curentCat = null;
 		if (artGrid) {
 			const shuffledChildren = shuffle(Array.from(artGrid.children));
 			artGrid.innerHTML = '';
 			shuffledChildren.forEach(child => artGrid.appendChild(child));
 		}
+		const artGridChildren = Array.from(artGrid.children);
+
+		const artButtons = document.querySelectorAll('.art-category');
+		artButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				if (curentCat !== null) { 
+						curentCat.classList.remove('art-clicked');
+				}
+
+				if (curentCat === button) {
+					curentCat = null;
+				} else {
+					button.classList.add('art-clicked');
+					curentCat = button;
+				}
+
+				artGridChildren.forEach((ele : HTMLElement) => {
+					if (curentCat === null) {
+						ele.style.display = 'block';
+					} else {
+						if (ele.classList.contains(curentCat.id)) {
+							ele.style.display = 'block';
+						} else {
+							ele.style.display = 'none';
+						}
+					}
+				})
+			});
+		});
+
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
@@ -248,20 +283,28 @@ import vid13 from "../../assets/vid13.mp4";
 				<div class="body-menu dev-body-block">
 					<div class="body-container">
 						<h1>Graphics</h1>
+						<div class="art-buttons">
+							<button class="art-category" id="art-img">Stills</button>
+							<button class="art-category" id="art-short">Clips</button>
+							<button class="art-category" id="art-video">Exhibits</button>
+						</div>
 						<div class="art-grid" id="artGrid">
-							<Image class="art-grid-item" src={pic1} loading="lazy" width="2576" height="1574" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic2} loading="lazy" width="1535" height="861" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic3} loading="lazy" width="3840" height="2160" alt='izakaya_bg'/>
+							<Image class="art-grid-item art-img" src={pic1} loading="lazy" width="2576" height="1574" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic2} loading="lazy" width="1535" height="861" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic3} loading="lazy" width="3840" height="2160" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic5} loading="lazy" width="3590" height="2019" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic7} loading="lazy" width="1920" height="1080" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic8} loading="lazy" width="1905" height="1072" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic9} loading="lazy" width="1920" height="1080" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic10} loading="lazy" width="2162" height="1496" alt='art img'/>
+							<Image class="art-grid-item art-img" src={pic15} loading="lazy" width="1080" height="1080" alt='art img'/>
+							<VideoPic img={pic11} vid={vid1} dim={[1920, 1080]}/>
+							<VideoPic img={pic12} vid={vid2} dim={[1920, 1080]}/>
+							<VideoPic img={pic13} vid={vid3} dim={[1920, 1080]}/>
+							<VideoPic img={pic16} vid={vid4} dim={[1920, 1080]}/>
 							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}/>
-							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[2880, 1206]} img={pic6}/>
-							<Image class="art-grid-item" src={pic5} loading="lazy" width="3590" height="2019" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic7} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic8} loading="lazy" width="1905" height="1072" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic9} loading="lazy" width="1920" height="1080" alt='izakaya_bg'/>
-							<Image class="art-grid-item" src={pic10} loading="lazy" width="2162" height="1496" alt='izakaya_bg'/>
-							<VideoPic img={pic11} vid={vid11} dim={[1920, 1080]}/>
-							<VideoPic img={pic12} vid={vid12} dim={[1920, 1080]}/>
-							<VideoPic img={pic13} vid={vid13} dim={[1920, 1080]}/>
+							<LinkPic url="https://www.youtube.com/watch?v=1YzAhbeAiUE" dim={[2880, 1206]} img={pic6}/>
+							<LinkPic url="https://www.youtube.com/watch?v=_uEzKYpAo58" dim={[1920, 1080]} img={pic14}/>
 						</div>
 					</div>
 				</div>
@@ -520,6 +563,31 @@ import vid13 from "../../assets/vid13.mp4";
 		font-weight: 200;
 	}
 
+	.art-buttons {
+		flex-direction: row;
+	}
+
+	.art-category {
+		color: var(--light-text);
+		background-color: rgb(226, 122, 122);
+		width: 15%;
+		line-height: calc(var(--font-h2) * 1.5);
+		transition: calc(var(--trans-time) / 2) ease;
+		margin-left: 2rem;
+		font-size: var(--font-h3);
+		justify-content: center;
+	}
+	
+	.art-clicked {
+		color: rgb(194, 194, 194);
+		background-color: #4d2828;
+	}
+	
+	.art-category:hover {
+		color: white;
+		background-color: #271414;
+	}
+
 	.block-ingredients {
 		flex-direction: row;
 		justify-content: flex-start;
@@ -557,13 +625,13 @@ import vid13 from "../../assets/vid13.mp4";
 		background-color: #1D413C;
 	}
 
-    .switch-body {
+    .switch-body,{
 		background-color: #eed695;
 		color: #1D413C;
         border-radius: 2rem;
     }
 
-	.switch-body:hover {
+	.switch-body:hover,{
 		background-color: #0f221f;
 		color: #eed695;
 	}
@@ -619,6 +687,10 @@ import vid13 from "../../assets/vid13.mp4";
 			max-height: 60vh;
 		}
 
+		.art-category {
+			width: 20%;
+		}
+
 		:global(.art-grid-item ) {
 			height: 175px;
 		}
@@ -653,6 +725,20 @@ import vid13 from "../../assets/vid13.mp4";
 
 		.body-container {
 			padding: 0 1rem;
+		}
+
+		.art-buttons {
+			justify-content: space-between;
+			padding: 0 1rem;
+		}
+
+		.art-category {
+			margin: 0;
+			padding: 0;
+			width: 30%;
+			line-height: calc(var(--font-h1) * 1.5);
+			font-size:  calc(var(--font-h1) * 0.75);
+			justify-content: center;
 		}
 
 		.dev-block {
