@@ -11,26 +11,38 @@ import { Image } from 'astro:assets';
 import pp from "../../assets/art_pp.png";
 import izakayaBg from "../../assets/izakaya_bg_art.png";
 import izakaya from "../../assets/izakaya_art.png";
-import pic1 from "../../assets/pic1.png";
-import pic2 from "../../assets/pic2.png";
-import pic3 from "../../assets/pic3.png";
-import pic4 from "../../assets/pic4.png";
-import pic5 from "../../assets/pic5.png";
-import pic6 from "../../assets/pic6.png";
-import pic7 from "../../assets/pic7.png";
-import pic8 from "../../assets/pic8.png";
-import pic9 from "../../assets/pic9.png";
-import pic10 from "../../assets/pic10.png";
-import pic11 from "../../assets/pic11.png";
-import pic12 from "../../assets/pic12.png";
-import pic13 from "../../assets/pic13.png";
-import pic14 from "../../assets/pic14.jpg";
-import pic15 from "../../assets/pic15.png";
-import pic16 from "../../assets/pic16.png";
-import vid1 from "../../assets/vid1.mp4";
-import vid2 from "../../assets/vid2.mp4";
-import vid3 from "../../assets/vid3.mp4";
-import vid4 from "../../assets/vid4.mp4";
+import pic1 from "../../assets/art/pic1.png";
+import pic2 from "../../assets/art/pic2.png";
+import pic3 from "../../assets/art/pic3.png";
+import pic4 from "../../assets/art/pic4.png";
+import pic5 from "../../assets/art/pic5.png";
+import pic6 from "../../assets/art/pic6.png";
+import pic7 from "../../assets/art/pic7.png";
+import pic8 from "../../assets/art/pic8.png";
+import pic9 from "../../assets/art/pic9.png";
+import pic10 from "../../assets/art/pic10.png";
+import pic11 from "../../assets/art/pic11.png";
+import pic12 from "../../assets/art/pic12.png";
+import pic13 from "../../assets/art/pic13.png";
+import pic14 from "../../assets/art/pic14.jpg";
+import pic15 from "../../assets/art/pic15.png";
+import pic16 from "../../assets/art/pic16.png";
+import pic17 from "../../assets/art/pic17.png";
+import vid1 from "../../assets/art/vid1.mp4";
+import vid2 from "../../assets/art/vid2.mp4";
+import vid3 from "../../assets/art/vid3.mp4";
+import vid4 from "../../assets/art/vid4.mp4";
+import vid5 from "../../assets/art/vid5.mp4";
+import vid1O from "../../assets/art/vid1.ogg";
+import vid2O from "../../assets/art/vid2.ogg";
+import vid3O from "../../assets/art/vid3.ogg";
+import vid4O from "../../assets/art/vid4.ogg";
+import vid5O from "../../assets/art/vid5.ogg";
+import vid1W from "../../assets/art/vid1.webm";
+import vid2W from "../../assets/art/vid2.webm";
+import vid3W from "../../assets/art/vid3.webm";
+import vid4W from "../../assets/art/vid4.webm";
+import vid5W from "../../assets/art/vid5.webm";
 ---
 <script>
 	import { moveSite, parallax, parallaxTouch } from '../../shared.js'
@@ -322,10 +334,11 @@ import vid4 from "../../assets/vid4.mp4";
 							<Image class="art-grid-item art-img" src={pic9} loading="lazy" width="1920" height="1080" alt='art img'/>
 							<Image class="art-grid-item art-img" src={pic10} loading="lazy" width="2162" height="1496" alt='art img'/>
 							<Image class="art-grid-item art-img" src={pic15} loading="lazy" width="1080" height="1080" alt='art img'/>
-							<VideoPic img={pic11} vid={vid1} dim={[1920, 1080]}/>
-							<VideoPic img={pic12} vid={vid2} dim={[1920, 1080]}/>
-							<VideoPic img={pic13} vid={vid3} dim={[1920, 1080]}/>
-							<VideoPic img={pic16} vid={vid4} dim={[1920, 1080]}/>
+							<VideoPic img={pic11} vid={vid1} ogg={vid1O} webm={vid1W} dim={[1920, 1080]}/>
+							<VideoPic img={pic12} vid={vid2} ogg={vid2O} webm={vid2W} dim={[1920, 1080]}/>
+							<VideoPic img={pic13} vid={vid3} ogg={vid3O} webm={vid3W} dim={[1920, 1080]}/>
+							<VideoPic img={pic16} vid={vid4} ogg={vid4O} webm={vid4W} dim={[1920, 1080]}/>
+							<VideoPic img={pic17} vid={vid5} ogg={vid5O} webm={vid5W} dim={[1920, 1080]}/>
 							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}/>
 							<LinkPic url="https://www.youtube.com/watch?v=1YzAhbeAiUE" dim={[2880, 1206]} img={pic6}/>
 							<LinkPic url="https://www.youtube.com/watch?v=_uEzKYpAo58" dim={[1920, 1080]} img={pic14}/>
