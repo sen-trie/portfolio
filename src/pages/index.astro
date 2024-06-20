@@ -1,6 +1,8 @@
 ---
 import '../global.css'
 import Meta from '../layouts/layout.astro';
+import banner from "../assets/banner.png";
+import { Image } from 'astro:assets';
 ---
 
 <script>
@@ -13,11 +15,11 @@ import Meta from '../layouts/layout.astro';
 		const bodyLeft = document.getElementById("bodyLeft");
 		const bodyRight = document.getElementById("bodyRight");
 		const homeDiv = document.getElementById("homeDiv");
-		const homeText = document.getElementById("homeText");
+		const homeImage = document.getElementById("homeImage");
 
 		if (transitionFirst) {
 			homeHeader.style.transform = 'scaleY(0)';
-			homeText.style.opacity = '0';
+			homeImage.style.opacity = '0';
 			altDomain === 'dev' ? (bodyRight.style.opacity = '0') : (bodyLeft.style.opacity = '0');
 			bodyLeft.innerText = 'Loading...';
 			bodyRight.innerText = 'Loading...';
@@ -94,14 +96,15 @@ import Meta from '../layouts/layout.astro';
   	});
 </script>
 
-<Meta title="SENTRIE'S PORTFOLIO" animOut="slideDown">
+<Meta title="SENTRIE - HOME" animOut="slideDown">
 	<div class="home-div" id="homeDiv">
 		<div class="home-header" id="homeHeader">
-			<p id="homeText">
+			<Image src={banner} alt="banner" class="banner" id="homeImage"/>
+			<!-- <p id="homeImage">
 				Welcome to the portolio 
 				<br />
 				of I AM SENTRIE
-			</p>
+			</p> -->
 		</div>
 		<div class="body-side body-left" id="bodyLeftDiv">
 			<p id="bodyLeft">
@@ -128,9 +131,18 @@ import Meta from '../layouts/layout.astro';
 		pointer-events: none;
 		position: absolute;
 		top: 15%;
-		height: 160px;
+		height: 200px;
 		transition: var(--trans-time) ease;
 		background: linear-gradient(90deg, #09201d 50%, var(--dark-body) 50%);
+	}
+
+	.banner {
+		height: 100%;
+		width: 100%;
+		opacity: 1;
+		object-fit: cover;
+		transition: all var(--trans-time) ease;
+		pointer-events: none;
 	}
 
 	.home-header > p {
@@ -160,5 +172,33 @@ import Meta from '../layouts/layout.astro';
 
 	#bodyRight {
 		background-color: #09201d;
+	}
+
+	@media (max-width: 768px) {
+		.home-header {
+			height: 175px;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.home-header {
+			width: 100%;
+			aspect-ratio: 3;
+			height: auto;
+		}
+	}
+
+	@media (min-aspect-ratio: 2/3) {
+		#bodyLeft, #bodyRight {
+			position: absolute;
+			bottom: 35%;
+		}
+	}
+
+	@media (min-aspect-ratio: 4/3) and (max-width: 768px) {
+		#bodyLeft, #bodyRight {
+			position: absolute;
+			bottom: 15%;
+		}
 	}
 </style>

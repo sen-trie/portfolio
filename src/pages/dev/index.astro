@@ -19,6 +19,42 @@ import proj1 from "../../assets/proj1.png";
 import proj2 from "../../assets/proj2.png";
 import proj3 from "../../assets/proj3.png";
 import proj4 from "../../assets/proj4.png";
+
+const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadata, string][] = [
+	[  
+	  'nahidaQuest!', 
+	  `An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on modern desktop and mobile browsers.`,
+	  [[html, "HTML Icon"], [css, "CSS Icon"], [js, "Javascript Icon"]],
+	  `${githubRepo}/nahidaQuest`,
+	  proj1,
+	  "nahidaQuest Project" 
+	],
+	[  
+	  '2D Heat Diffusion', 
+	  `Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
+ 	   partial differential equation and visualizes the solution as a heatmap.`,
+	  [[matlab, "Matlab Icon"]],
+	  `${githubRepo}/2d-heat-diffusion`,
+	  proj2,
+	  "Matlab Project" 
+	],
+	[  
+	  'The Lair', 
+	  `A fictional online storefront set in a world populated by vampires.`,
+	  [[js, "Javascript Icon"], [react, "React Icon"]],
+	  `${githubRepo}/shopping-cart`,
+	  proj3,
+	  "Storefront Project" 
+	],
+	[  
+	  'CV Maker', 
+	  `A simple CV maker that allows users to customize and download their CV.`,
+	  [[js, "Javascript Icon"], [react, "React Icon"]],
+	  `${githubRepo}/cv-project`,
+	  proj4,
+	  "CV Maker Project" 
+	],
+]
 ---
 <script>
 	import { triggerNavigation } from '../../components/triggerNavigation';
@@ -116,6 +152,18 @@ import proj4 from "../../assets/proj4.png";
 				goDev('art');
 			}
 		}
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				} else {
+					entry.target.classList.remove('show');
+				}
+			});
+		});
+
+		document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
 
 		const bodyLeft = document.getElementById('bodyLeft');
 		let touchstartX = 0;
@@ -240,69 +288,29 @@ import proj4 from "../../assets/proj4.png";
 						</p>
 					</div>
 				</div>
+				<div class="divider project-divider dev-body-block"></div>
 				<Anchor id="projects" />
 				<div class="body-menu dev-body-block">
 					<div class="body-container">
 						<h1>Projects</h1>
 						<div class="dev-block-tile">
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">nahidaQuest!</p>
-									<p class="block-desc">
-										An incremental game based on the popular hit Genshin Impact, built entirely from scratch. Playable on
-										modern desktop and mobile browsers.
-									</p>
-									<div class="block-ingredients">
-										<Image src={html} alt="HTML Icon" />
-										<Image src={css} alt="CSS Icon" />
-										<Image src={js} alt="Javascript Icon" />
+							{ devItems.map((data) => {
+								return (<div class="dev-block hidden">
+									<div class="block-text">
+										<p class="block-name">{data[0]}</p>
+										<p class="block-desc">{data[1]}</p>
+										<div class="block-ingredients">
+											{data[2].map((tech) => {
+												return <Image src={tech[0]} alt={tech[1]} />
+											})}
+										</div>
 									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/nahidaQuest`} target="_blank">
-									<Image src={proj1} alt="nahidaQuest Project" />
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">2D Heat Diffusion</p>
-									<p class="block-desc">
-										Simulates heat transfer by conduction through a two dimensional plate. Computationally solves the heat
-										partial differential equation and visualizes the solution as a heatmap.
-									</p>
-									<div class="block-ingredients">
-										<Image src={matlab} alt="Matlab Icon"/>
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/2d-heat-diffusion`} target="_blank">
-									<Image src={proj2} alt="Matlab Project"/>
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">The Lair</p>
-									<p class="block-desc">A fictional online storefront set in a world populated by vampires.</p>
-									<div class="block-ingredients">
-										<Image src={js} alt="Javascript Icon" />
-										<Image src={react} alt="React Icon" />
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/shopping-cart`} target="_blank">
-									<Image src={proj3} alt="Storefront Project" />
-								</a>
-							</div>
-							<div class="dev-block">
-								<div class="block-text">
-									<p class="block-name">CV Maker</p>
-									<p class="block-desc">A simple CV maker that allows users to customize and download their CV.</p>
-									<div class="block-ingredients">
-										<Image src={js} alt="Javascript Icon" />
-										<Image src={react} alt="React Icon" />
-									</div>
-								</div>
-								<a class="block-pic" href={`${githubRepo}/cv-project`} target="_blank">
-									<Image src={proj4} alt="CV Maker Project" />
-								</a>
-							</div>
+									<a class="block-pic" href={data[3]} target="_blank">
+										<Image src={data[4]} alt={data[5]} />
+									</a>
+								</div>)
+								})
+							}
 						</div>
 					</div>
 				</div>
@@ -452,6 +460,12 @@ import proj4 from "../../assets/proj4.png";
 		background-image: url(../../assets/border_story.png);
 	}
 
+	.project-divider {
+		background-color: #3f1d38;
+		background-image: url(../../assets/border_menu.png);
+		background-position: center;
+	}
+
 	.menu-divider {
 		background-color: #0d1117;
 		background-image: url(../../assets/border_receipt.png);
@@ -485,7 +499,6 @@ import proj4 from "../../assets/proj4.png";
 
 	.body-menu {
 		padding: 1rem 0;
-		padding-top: 2.5rem;
 		background-image: linear-gradient(#1a333b, #0d1117);
 	}
 
@@ -543,6 +556,19 @@ import proj4 from "../../assets/proj4.png";
 		max-width: 30%;
 		height: fit-content;
 		aspect-ratio: 1;
+	}
+
+	.block-pic > img {
+		transition-delay: 200ms;
+	}
+
+	.block-pic > .hidden {
+		transition: all 1.4s;
+		transform: translateX(-75%) translateZ(-800px) rotateY(90deg);
+	}
+
+	.block-pic > .show {
+		transform: translateX(0) translateZ(0) rotateY(0);
 	}
 
 	/* .block-ingredients > img {

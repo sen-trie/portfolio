@@ -25,25 +25,41 @@ import pic11 from "../../assets/art/pic11.png";
 import pic12 from "../../assets/art/pic12.png";
 import pic13 from "../../assets/art/pic13.png";
 import pic14 from "../../assets/art/pic14.jpg";
-import pic15 from "../../assets/art/pic15.png";
+import pic15 from "../../assets/art/pic15.jpg";
 import pic16 from "../../assets/art/pic16.png";
-import pic17 from "../../assets/art/pic17.png";
 import vid1 from "../../assets/art/vid1.mp4";
 import vid2 from "../../assets/art/vid2.mp4";
 import vid3 from "../../assets/art/vid3.mp4";
 import vid4 from "../../assets/art/vid4.mp4";
-import vid5 from "../../assets/art/vid5.mp4";
 import vid1O from "../../assets/art/vid1.ogg";
 import vid2O from "../../assets/art/vid2.ogg";
 import vid3O from "../../assets/art/vid3.ogg";
 import vid4O from "../../assets/art/vid4.ogg";
-import vid5O from "../../assets/art/vid5.ogg";
 import vid1W from "../../assets/art/vid1.webm";
 import vid2W from "../../assets/art/vid2.webm";
 import vid3W from "../../assets/art/vid3.webm";
 import vid4W from "../../assets/art/vid4.webm";
-import vid5W from "../../assets/art/vid5.webm";
+
+const artItems: [string, ImageMetadata, number | number[], number | string, string?, string?][] = [
+		['img', pic1, 2576, 1574],
+		['img', pic2, 1535, 861],
+		['img', pic3, 3840, 2160],
+		['img', pic5, 3590, 2019],
+		['img', pic7, 1920, 1080],
+		['img', pic8, 1905, 1072],
+		['img', pic9, 1920, 1080],
+		['img', pic10, 2162, 1496],
+		['vid', pic11, [1920, 1080], vid1, vid1O, vid1W],
+		['vid', pic12, [1920, 1080], vid2, vid2O, vid2W],
+		['vid', pic13, [1920, 1080], vid3, vid3O, vid3W],
+		['vid', pic16, [1920, 1080], vid4, vid4O, vid4W],
+		['link', pic4, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
+		['link', pic6, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
+		['link', pic14, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
+		['link', pic15, [1920, 1080], "https://www.youtube.com/watch?v=SN2EYs8_nmA"],
+	]
 ---
+
 <script>
 	import { moveSite, parallax, parallaxTouch } from '../../shared.js'
 	import { triggerNavigation } from '../../components/triggerNavigation';
@@ -184,6 +200,18 @@ import vid5W from "../../assets/art/vid5.webm";
 			}
 		}
 
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				} else {
+					entry.target.classList.remove('show');
+				}
+			});
+		});
+
+		document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
 		const bodyRight = document.getElementById('bodyRight');
 		let touchstartX = 0;
 		let touchendX = 0;
@@ -315,33 +343,31 @@ import vid5W from "../../assets/art/vid5.webm";
 						</p>
 					</div>
 				</div>
+				<div class="divider project-divider dev-body-block"></div>
 				<Anchor id="graphics" />
 				<div class="body-menu dev-body-block">
 					<div class="body-container">
 						<h1>Graphics</h1>
 						<div class="art-buttons">
-							<button class="art-category" id="art-img">Stills</button>
-							<button class="art-category" id="art-short">Clips</button>
-							<button class="art-category" id="art-video">Exhibits</button>
+							<button class="art-category hidden" id="art-img">Stills</button>
+							<button class="art-category hidden" id="art-short">Clips</button>
+							<button class="art-category hidden" id="art-video">Exhibits</button>
 						</div>
 						<div class="art-grid" id="artGrid">
-							<Image class="art-grid-item art-img" src={pic1} loading="lazy" width="2576" height="1574" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic2} loading="lazy" width="1535" height="861" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic3} loading="lazy" width="3840" height="2160" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic5} loading="lazy" width="3590" height="2019" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic7} loading="lazy" width="1920" height="1080" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic8} loading="lazy" width="1905" height="1072" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic9} loading="lazy" width="1920" height="1080" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic10} loading="lazy" width="2162" height="1496" alt='art img'/>
-							<Image class="art-grid-item art-img" src={pic15} loading="lazy" width="1080" height="1080" alt='art img'/>
-							<VideoPic img={pic11} vid={vid1} ogg={vid1O} webm={vid1W} dim={[1920, 1080]}/>
-							<VideoPic img={pic12} vid={vid2} ogg={vid2O} webm={vid2W} dim={[1920, 1080]}/>
-							<VideoPic img={pic13} vid={vid3} ogg={vid3O} webm={vid3W} dim={[1920, 1080]}/>
-							<VideoPic img={pic16} vid={vid4} ogg={vid4O} webm={vid4W} dim={[1920, 1080]}/>
-							<VideoPic img={pic17} vid={vid5} ogg={vid5O} webm={vid5W} dim={[1920, 1080]}/>
-							<LinkPic url="https://www.youtube.com/watch?v=vHGuVzc_z68" dim={[1920, 1080]} img={pic4}/>
-							<LinkPic url="https://www.youtube.com/watch?v=1YzAhbeAiUE" dim={[2880, 1206]} img={pic6}/>
-							<LinkPic url="https://www.youtube.com/watch?v=_uEzKYpAo58" dim={[1920, 1080]} img={pic14}/>
+							{
+								artItems.map((data) => {
+									switch (data[0]) {
+										case 'img':
+											return <Image class="art-grid-item art-img" src={data[1]} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
+										case 'vid':
+											return <VideoPic img={data[1]} dim={data[2]} vid={data[3]} ogg={data[4]} webm={data[5]} />
+										case 'link':
+											return <LinkPic img={data[1]} dim={data[2] as number[]} url={data[3] as string} />
+										default:
+											return console.error(`Error loading ${data}`);
+									}
+								})
+							}
 						</div>
 					</div>
 				</div>
@@ -517,6 +543,12 @@ import vid5W from "../../assets/art/vid5.webm";
 		background-image: url(../../assets/border_story_art.png);
 	}
 
+	.project-divider {
+		background-color: #1D413C;
+		background-image: url(../../assets/border_graphics.png);
+		background-position: center;
+	}
+
 	.menu-divider {
 		background-color: #27271b;
 		background-image: url(../../assets/border_form.png);
@@ -554,7 +586,6 @@ import vid5W from "../../assets/art/vid5.webm";
 
 	.body-menu {
 		padding: 1rem 0;
-		padding-top: 2.5rem;
 		background-image: linear-gradient(#3b1f1f, #27271b);
 	}
 
@@ -662,13 +693,31 @@ import vid5W from "../../assets/art/vid5.webm";
 		background-color: #1D413C;
 	}
 
+	.hidden:nth-child(2) {
+		transition-delay: 50ms;
+	}
+
+	.hidden:nth-child(3) {
+		transition-delay: 100ms;
+	}
+
+	.hidden {
+		transition: all 0.4s ease-in-out;
+		transform-origin: bottom;
+		transform: rotateX(100deg);
+	}
+
+	.show {
+		transform: rotateX(0);
+	}
+
     .switch-body {
 		background-color: #eed695;
 		color: #1D413C;
         border-radius: 2rem;
     }
 
-	.switch-body:hover,{
+	.switch-body:hover {
 		background-color: #0f221f;
 		color: #eed695;
 	}
