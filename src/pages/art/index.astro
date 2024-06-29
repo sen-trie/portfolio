@@ -28,17 +28,21 @@ import pic14 from "../../assets/art/pic14.jpg";
 import pic15 from "../../assets/art/pic15.jpg";
 import pic16 from "../../assets/art/pic16.png";
 import vid1 from "../../assets/art/vid1.mp4";
-import vid2 from "../../assets/art/vid2.mp4";
-import vid3 from "../../assets/art/vid3.mp4";
-import vid4 from "../../assets/art/vid4.mp4";
 import vid1O from "../../assets/art/vid1.ogg";
-import vid2O from "../../assets/art/vid2.ogg";
-import vid3O from "../../assets/art/vid3.ogg";
-import vid4O from "../../assets/art/vid4.ogg";
 import vid1W from "../../assets/art/vid1.webm";
+import vid2 from "../../assets/art/vid2.mp4";
+import vid2O from "../../assets/art/vid2.ogg";
 import vid2W from "../../assets/art/vid2.webm";
+import vid3 from "../../assets/art/vid3.mp4";
+import vid3O from "../../assets/art/vid3.ogg";
 import vid3W from "../../assets/art/vid3.webm";
+import vid4 from "../../assets/art/vid4.mp4";
+import vid4O from "../../assets/art/vid4.ogg";
 import vid4W from "../../assets/art/vid4.webm";
+import vid5 from "../../assets/art/vid5.mp4";
+import vid5O from "../../assets/art/vid5.ogg";
+import vid5W from "../../assets/art/vid5.webm";
+import vid5P from "../../assets/art/vid5.png";
 
 const artItems: [string, ImageMetadata, number | number[], number | string, string?, string?][] = [
 		['img', pic1, 2576, 1574],
@@ -53,6 +57,7 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		['vid', pic12, [1920, 1080], vid2, vid2O, vid2W],
 		['vid', pic13, [1920, 1080], vid3, vid3O, vid3W],
 		['vid', pic16, [1920, 1080], vid4, vid4O, vid4W],
+		['vid', vid5P, [1920, 1080], vid5, vid5O, vid5W],
 		['link', pic4, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
 		['link', pic6, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
 		['link', pic14, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
@@ -204,8 +209,6 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					entry.target.classList.add('show');
-				} else {
-					entry.target.classList.remove('show');
 				}
 			});
 		});

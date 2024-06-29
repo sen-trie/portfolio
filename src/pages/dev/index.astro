@@ -157,8 +157,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					entry.target.classList.add('show');
-				} else {
-					entry.target.classList.remove('show');
 				}
 			});
 		});
