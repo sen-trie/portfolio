@@ -62,13 +62,18 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		['link', pic6, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
 		['link', pic14, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
 		['link', pic15, [1920, 1080], "https://www.youtube.com/watch?v=SN2EYs8_nmA"],
-	]
+]
 ---
 
 <script>
 	import { moveSite, parallax, parallaxTouch } from '../../shared.js'
 	import { triggerNavigation } from '../../components/triggerNavigation';
 	let transitionFirst = true;
+	const categoryTextDict: { [key: string]: string } = {
+		'art-img':'Still images showcasing individual scenes or concepts.',
+		'art-short':'Short animated projects, focusing on character motions. Can be played by clicking.',
+		'art-video':'Flagship animation projects. These works push my technical and creative skills to the limit as I explore a concept (e.g storytelling) as far as I can.'
+	}
 
 	window.onload = function() {
 		const form = document.getElementById("form");
@@ -162,14 +167,15 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		});
 
 		const artGrid = document.getElementById('artGrid');
+		const categoryText = document.getElementById('art-category-text');
 		let curentCat = null;
 		if (artGrid) {
 			const shuffledChildren = shuffle(Array.from(artGrid.children));
 			artGrid.innerHTML = '';
 			shuffledChildren.forEach(child => artGrid.appendChild(child));
 		}
-		const artGridChildren = Array.from(artGrid.children);
 
+		const artGridChildren = Array.from(artGrid.children);
 		const artButtons = document.querySelectorAll('.art-category');
 		artButtons.forEach((button) => {
 			button.addEventListener('click', () => {
@@ -194,9 +200,13 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 							ele.style.display = 'none';
 						}
 					}
-				})
+				});
+
+				categoryText.innerText = curentCat ? categoryTextDict[curentCat.id] : ''; // TODO
 			});
 		});
+
+		document.getElementById('art-img').click();
 
 		function handleGesure(touchstartX : number, touchendX : number) {
 			const diff = touchstartX - touchendX;
@@ -232,7 +242,7 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		}, false);
 
 		artGrid.addEventListener('touchmove', (event: TouchEvent) => {
-			event.stopPropagation()
+			event.stopPropagation();
 		}, false);
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
@@ -342,7 +352,7 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 							from time to time.
 							<br /><br />
 							I specialize in character animation, as I find that creating a story through motion is the most fun. 
-							My primary tool for 3D work is Blender, with Davinci Resolve and Photo Affinity 2 to complement the render.
+							My primary tool for 3D work is Blender, with Davinci Resolve and Affinity Photo 2 to complement the render.
 						</p>
 					</div>
 				</div>
@@ -356,7 +366,9 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 							<button class="art-category hidden" id="art-short">Clips</button>
 							<button class="art-category hidden" id="art-video">Exhibits</button>
 						</div>
+						<p id="art-category-text"></p>
 						<div class="art-grid" id="artGrid">
+							
 							{
 								artItems.map((data) => {
 									switch (data[0]) {
@@ -647,6 +659,10 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		margin-left: 2rem;
 		font-size: var(--font-h3);
 		justify-content: center;
+	}
+
+	#art-category-text {
+		min-height: var(--font-h2);
 	}
 	
 	.art-clicked {
