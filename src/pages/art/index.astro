@@ -11,57 +11,59 @@ import { Image } from 'astro:assets';
 import pp from "../../assets/art_pp.png";
 import izakayaBg from "../../assets/izakaya_bg_art.png";
 import izakaya from "../../assets/izakaya_art.png";
+//
 import pic1 from "../../assets/art/pic1.png";
 import pic2 from "../../assets/art/pic2.png";
 import pic3 from "../../assets/art/pic3.png";
-import pic4 from "../../assets/art/pic4.png";
+import pic4 from "../../assets/art/pic4.jpg";
 import pic5 from "../../assets/art/pic5.png";
-import pic6 from "../../assets/art/pic6.png";
 import pic7 from "../../assets/art/pic7.png";
 import pic8 from "../../assets/art/pic8.png";
 import pic9 from "../../assets/art/pic9.png";
 import pic10 from "../../assets/art/pic10.png";
-import pic11 from "../../assets/art/pic11.png";
-import pic12 from "../../assets/art/pic12.png";
-import pic13 from "../../assets/art/pic13.png";
-import pic14 from "../../assets/art/pic14.jpg";
-import pic15 from "../../assets/art/pic15.jpg";
-import pic16 from "../../assets/art/pic16.png";
+//
 import vid1 from "../../assets/art/vid1.mp4";
-import vid1O from "../../assets/art/vid1.ogg";
 import vid1W from "../../assets/art/vid1.webm";
+import vid1P from "../../assets/art/vid1.png";
 import vid2 from "../../assets/art/vid2.mp4";
-import vid2O from "../../assets/art/vid2.ogg";
 import vid2W from "../../assets/art/vid2.webm";
+import vid2P from "../../assets/art/vid2.png";
 import vid3 from "../../assets/art/vid3.mp4";
-import vid3O from "../../assets/art/vid3.ogg";
 import vid3W from "../../assets/art/vid3.webm";
-import vid4 from "../../assets/art/vid4.mp4";
-import vid4O from "../../assets/art/vid4.ogg";
-import vid4W from "../../assets/art/vid4.webm";
+import vid3P from "../../assets/art/vid3.png";
 import vid5 from "../../assets/art/vid5.mp4";
-import vid5O from "../../assets/art/vid5.ogg";
 import vid5W from "../../assets/art/vid5.webm";
 import vid5P from "../../assets/art/vid5.png";
+import vid6 from "../../assets/art/vid6.mp4";
+import vid6W from "../../assets/art/vid6.webm";
+import vid6P from "../../assets/art/vid6.png";
+//
+import tb1 from "../../assets/art/tb1.png";
+import tb2 from "../../assets/art/tb2.png";
+import tb3 from "../../assets/art/tb3.jpg";
+import tb4 from "../../assets/art/tb4.jpg";
+import tb5 from "../../assets/art/tb5.jpg";
 
 const artItems: [string, ImageMetadata, number | number[], number | string, string?, string?][] = [
 		['img', pic1, 2576, 1574],
 		['img', pic2, 1535, 861],
 		['img', pic3, 3840, 2160],
+		['img', pic4, 2160, 3840],
 		['img', pic5, 3590, 2019],
 		['img', pic7, 1920, 1080],
 		['img', pic8, 1905, 1072],
 		['img', pic9, 1920, 1080],
 		['img', pic10, 2162, 1496],
-		['vid', pic11, [1920, 1080], vid1, vid1O, vid1W],
-		['vid', pic12, [1920, 1080], vid2, vid2O, vid2W],
-		['vid', pic13, [1920, 1080], vid3, vid3O, vid3W],
-		['vid', pic16, [1920, 1080], vid4, vid4O, vid4W],
-		['vid', vid5P, [1920, 1080], vid5, vid5O, vid5W],
-		['link', pic4, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
-		['link', pic6, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
-		['link', pic14, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
-		['link', pic15, [1920, 1080], "https://www.youtube.com/watch?v=SN2EYs8_nmA"],
+		['vid', vid1P, [1920, 1080], vid1, vid1W],
+		['vid', vid2P, [1920, 1080], vid2, vid2W],
+		['vid', vid3P, [1920, 1080], vid3, vid3W],
+		['vid', vid5P, [1920, 1080], vid5, vid5W],
+		['vid', vid6P, [1920, 1080], vid6, vid6W],
+		['link', tb1, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
+		['link', tb2, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
+		['link', tb3, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
+		['link', tb4, [1920, 1080], "https://www.youtube.com/watch?v=SN2EYs8_nmA"],
+		['link', tb5, [1920, 1080], "https://www.youtube.com/watch?v=RgBwLQty8B4"],
 ]
 ---
 
@@ -375,7 +377,7 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 										case 'img':
 											return <Image class="art-grid-item art-img" src={data[1]} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
 										case 'vid':
-											return <VideoPic img={data[1]} dim={data[2]} vid={data[3]} ogg={data[4]} webm={data[5]} />
+											return <VideoPic img={data[1]} dim={data[2]} vid={data[3]} webm={data[4]} />
 										case 'link':
 											return <LinkPic img={data[1]} dim={data[2] as number[]} url={data[3] as string} />
 										default:

@@ -1,5 +1,5 @@
 ---
-const { img, dim, vid, webm, ogg } = Astro.props;
+const { img, dim, vid, webm } = Astro.props;
 ---
 <style is:global>
     .art-grid-div video {
@@ -12,7 +12,6 @@ const { img, dim, vid, webm, ogg } = Astro.props;
 <div class="art-grid-div art-grid-item art-short">
     <video width={dim[0]} height={dim[1]} controls playsinline preload="metadata" poster={img}>
         <source src={`${vid}#t=0.3`} type="video/mp4">
-        <source src={`${ogg}#t=0.3`} type="video/ogg">
         <source src={`${webm}#t=0.3`} type="video/webm">
         Your browser does not support the video tag.
     </video>
