@@ -97,14 +97,9 @@ import { Image } from 'astro:assets';
 </script>
 
 <Meta title="SENTRIE - HOME" animOut="slideDown">
-	<div class="home-div" id="homeDiv">
+	<div class="home-div" id="homeDiv" transition:persist>
 		<div class="home-header" id="homeHeader">
 			<Image src={banner} alt="banner" class="banner" id="homeImage"/>
-			<!-- <p id="homeImage">
-				Welcome to the portolio 
-				<br />
-				of I AM SENTRIE
-			</p> -->
 		</div>
 		<div class="body-side body-left" id="bodyLeftDiv">
 			<p id="bodyLeft">

@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro check && astro build",
@@ -9,9 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.7.0",
-    "@astrojs/ts-plugin": "^1.8.0",
-    "astro": "^4.8.6",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/ts-plugin": "^1.10.4",
+    "@fontsource-variable/rubik": "^5.1.1",
+    "astro": "^5.2.5",
     "astro-purgecss": "^4.1.1",
     "purgecss": "^6.0.0",
     "typescript": "^5.4.5"

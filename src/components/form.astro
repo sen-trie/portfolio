@@ -10,7 +10,6 @@ const { col, butCol } = Astro.props;
 <style define:vars={{ col, butCol }}>
 	.body-receipt {
         height: unset;
-		padding-bottom: 5rem;
 		background-color: var(--col);
 	}
 
@@ -19,7 +18,13 @@ const { col, butCol } = Astro.props;
         max-width: calc(900px + 1.5rem);
     }
 
-    form > button {
+    .submit-container {
+        width: 100%;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    .submit-container > button {
 		margin-top: 1rem;
 		background-color: var(--butCol);
 		color: var(--light-text);
@@ -29,7 +34,7 @@ const { col, butCol } = Astro.props;
 		transition: calc(var(--trans-time) / 2) ease;
 	}
 
-	form > button:hover {
+	.submit-container > button:hover {
 		background-color: var(--light-text);
 		color: var(--butCol);
 	}
@@ -57,8 +62,9 @@ const { col, butCol } = Astro.props;
             <textarea rows="6" id="body" name="message" placeholder="Tell me more!" required/>
 
             <div class="h-captcha fix-captcha" data-captcha="true" transition:persist></div>
-
-            <button type="submit" id="submit">Send</button>
+            <div class="submit-container">
+                <button type="submit" id="submit">Send</button>
+            </div>
         </form>
     </div>
 </div>

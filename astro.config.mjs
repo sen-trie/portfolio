@@ -6,6 +6,7 @@ import purgecss from "astro-purgecss";
 export default defineConfig({
   site: 'https://sen-trie.github.io/portfolio',
   base: 'portfolio',
+  publicDir: "static",
   integrations: [
     purgecss({
       keyframes: false, 
