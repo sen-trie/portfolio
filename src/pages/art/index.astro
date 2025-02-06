@@ -24,19 +24,14 @@ import pic10 from "../../assets/art/pic10.png";
 //
 import vid1 from "../../assets/art/vid1.mp4";
 import vid1W from "../../assets/art/vid1.webm";
-import vid1P from "../../assets/art/vid1.png";
 import vid2 from "../../assets/art/vid2.mp4";
 import vid2W from "../../assets/art/vid2.webm";
-import vid2P from "../../assets/art/vid2.png";
 import vid3 from "../../assets/art/vid3.mp4";
 import vid3W from "../../assets/art/vid3.webm";
-import vid3P from "../../assets/art/vid3.png";
 import vid5 from "../../assets/art/vid5.mp4";
 import vid5W from "../../assets/art/vid5.webm";
-import vid5P from "../../assets/art/vid5.png";
 import vid6 from "../../assets/art/vid6.mp4";
 import vid6W from "../../assets/art/vid6.webm";
-import vid6P from "../../assets/art/vid6.png";
 //
 import tb1 from "../../assets/art/tb1.png";
 import tb2 from "../../assets/art/tb2.png";
@@ -44,7 +39,7 @@ import tb3 from "../../assets/art/tb3.jpg";
 import tb4 from "../../assets/art/tb4.jpg";
 import tb5 from "../../assets/art/tb5.jpg";
 
-const artItems: [string, ImageMetadata, number | number[], number | string, string?, string?][] = [
+const artItems: [string, ImageMetadata | string, number | number[], number | string, string?, string?][] = [
 		['img', pic1, 2576, 1574],
 		['img', pic2, 1535, 861],
 		['img', pic3, 3840, 2160],
@@ -54,11 +49,11 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		['img', pic8, 1905, 1072],
 		['img', pic9, 1920, 1080],
 		['img', pic10, 2162, 1496],
-		['vid', vid1P, [1920, 1080], vid1, vid1W],
-		['vid', vid2P, [1920, 1080], vid2, vid2W],
-		['vid', vid3P, [1920, 1080], vid3, vid3W],
-		['vid', vid5P, [1920, 1080], vid5, vid5W],
-		['vid', vid6P, [1920, 1080], vid6, vid6W],
+		['vid', vid1, [1920, 1080], vid1W],
+		['vid', vid2, [1920, 1080], vid2W],
+		['vid', vid3, [1920, 1080], vid3W],
+		['vid', vid5, [1920, 1080], vid5W],
+		['vid', vid6, [1920, 1080], vid6W],
 		['link', tb1, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
 		['link', tb2, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
 		['link', tb3, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
@@ -117,7 +112,7 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 
 	function handleMenu() {
 		const headerMobile = document.getElementById('headerMobile');
-		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
+		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '200' : '-1';
 	}
 
 	function keyNav(event: KeyboardEvent) {
@@ -210,13 +205,6 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 
 		document.getElementById('art-img').click();
 
-		function handleGesure(touchstartX : number, touchendX : number) {
-			const diff = touchstartX - touchendX;
-			if (diff < -1 * (window.innerWidth / 2)) {
-				goDev('dev');
-			}
-		}
-
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
@@ -226,22 +214,6 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 		});
 
 		document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
-
-		const bodyRight = document.getElementById('bodyRight');
-		let touchstartX = 0;
-		let touchendX = 0;
-		bodyRight.addEventListener('touchstart', (event: TouchEvent) => {
-			touchstartX = event.touches[0].clientX;
-		}, false);
-
-		bodyRight.addEventListener('touchstart', (event: TouchEvent) => {
-			touchstartX = event.touches[0].clientX;
-		}, false);
-
-		bodyRight.addEventListener('touchmove', (event: TouchEvent) => {
-			touchendX = event.touches[0].clientX;
-			handleGesure(touchstartX, touchendX);
-		}, false);
 
 		artGrid.addEventListener('touchmove', (event: TouchEvent) => {
 			event.stopPropagation();
@@ -297,9 +269,9 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 						<Image src={pp} alt="developer profile" class="profile-pic" />
 					</ProfileButton>
 					<div class="header-div">
-						<a class="header-item" href="./#about">ABOUT</a>
-						<a class="header-item" href="./#graphics">GRAPHICS</a>
-						<a class="header-item" href="./#contact">CONTACT</a>
+						<a class="header-item" href="./#about">About</a>
+						<a class="header-item" href="./#graphics">Graphics</a>
+						<a class="header-item" href="./#contact">Contact</a>
 					</div>
 					<button class="header-button">☰</button>
 				</div>
@@ -324,15 +296,15 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 					</a>
 				</div>
 			</div>
+			<div id="headerMobile" class="header-mobile-div">
+				<a class="header-mobile-item" href="./#about">About</a>
+				<a class="header-mobile-item" href="./#graphics">Graphics</a>
+				<a class="header-mobile-item" href="./#contact">Contact</a>
+				<button class="header-mobile-button">
+					← DEV
+				</button>
+			</div>
 			<div class="dev-body subpage-body">
-				<div id="headerMobile" class="header-mobile-div">
-					<a class="header-mobile-item" href="./#about">ABOUT</a>
-					<a class="header-mobile-item" href="./#graphics">GRAPHICS</a>
-					<a class="header-mobile-item" href="./#contact">CONTACT</a>
-					<button class="header-mobile-button">
-						← DEV
-					</button>
-				</div>
 				<div class="body-top dev-body-block" id="bodyTop">
 					<Image src={izakayaBg}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
 					<Image src={izakaya}   loading="lazy" width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
@@ -369,11 +341,11 @@ const artItems: [string, ImageMetadata, number | number[], number | string, stri
 								artItems.map((data) => {
 									switch (data[0]) {
 										case 'img':
-											return <Image class="art-grid-item art-img" src={data[1]} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
+											return <Image class="art-grid-item art-img" src={data[1] as ImageMetadata} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
 										case 'vid':
-											return <VideoPic img={data[1]} dim={data[2]} vid={data[3]} webm={data[4]} />
+											return <VideoPic vid={data[1]} dim={data[2]} webm={data[3]} />
 										case 'link':
-											return <LinkPic img={data[1]} dim={data[2] as number[]} url={data[3] as string} />
+											return <LinkPic img={data[1] as ImageMetadata} dim={data[2] as number[]} url={data[3] as string} />
 										default:
 											return console.error(`Error loading ${data}`);
 									}

@@ -82,8 +82,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		if (!transitionFirst) return;
 
 		const homeDiv = document.getElementById('homeDiv');
-		const homeHeader = document.getElementById('homeHeader');
-		const homeText = document.getElementById('homeText');
 		const bodyLeft = document.getElementById('bodyLeft');
 		const bodyRight = document.getElementById('bodyRight');
 		const bodyRightImg = document.getElementById('bodyRightImg');
@@ -115,7 +113,7 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 
 	function handleMenu() {
 		const headerMobile = document.getElementById('headerMobile');
-		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '9' : '-1';
+		headerMobile.style.zIndex = headerMobile.style.zIndex === '-1' ? '200' : '-1';
 	}
 
 	function keyNav(event: KeyboardEvent) {
@@ -158,13 +156,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			});
 		});
 
-		function handleGesure(touchstartX : number, touchendX : number) {
-			const diff = touchstartX - touchendX;
-			if (diff > (window.innerWidth / 2)) {
-				goDev('art');
-			}
-		}
-
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
@@ -174,22 +165,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		});
 
 		document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
-
-		const bodyLeft = document.getElementById('bodyLeft');
-		let touchstartX = 0;
-		let touchendX = 0;
-		bodyLeft.addEventListener('touchstart', (event: TouchEvent) => {
-			touchstartX = event.touches[0].clientX;
-		}, false);
-
-		bodyLeft.addEventListener('touchstart', (event: TouchEvent) => {
-			touchstartX = event.touches[0].clientX;
-		}, false);
-
-		bodyLeft.addEventListener('touchmove', (event: TouchEvent) => {
-			touchendX = event.touches[0].clientX;
-			handleGesure(touchstartX, touchendX);
-		}, false);
 
 		const izakayaMain : HTMLElement = document.querySelector('.izakaya-main');
 		const izakayaBg : HTMLElement = document.querySelector('.izakaya-bg');
@@ -237,9 +212,9 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 						<Image src={devPp} alt="developer profile" class="profile-pic" />
 					</ProfileButton>
 					<div class="header-div">
-						<a class="header-item" href="./#about">ABOUT</a>
-						<a class="header-item" href="./#projects">PROJECTS</a>
-						<a class="header-item" href="./#contact">CONTACT</a>
+						<a class="header-item" href="./#about">About</a>
+						<a class="header-item" href="./#projects">Projects</a>
+						<a class="header-item" href="./#contact">Contact</a>
 					</div>
 					<button class="header-button">☰</button>
 				</div>
@@ -259,15 +234,15 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 					</a>
 				</div>
 			</div>
+			<div id="headerMobile" class="header-mobile-div">
+				<a class="header-mobile-item" href="./#about">About</a>
+				<a class="header-mobile-item" href="./#projects">Project</a>
+				<a class="header-mobile-item" href="./#contact">Contact</a>
+				<button class="header-mobile-button">
+					ART →
+				</button>
+			</div>
 			<div class="dev-body subpage-body">
-				<div id="headerMobile" class="header-mobile-div">
-					<a class="header-mobile-item" href="./#about">ABOUT</a>
-					<a class="header-mobile-item" href="./#projects">PROJECTS</a>
-					<a class="header-mobile-item" href="./#contact">CONTACT</a>
-					<button class="header-mobile-button">
-						ART →
-					</button>
-				</div>
 				<div class="body-top dev-body-block" id="bodyTop">
 					<Image  src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
 					<Image  src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
