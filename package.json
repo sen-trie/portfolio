@@ -1,11 +1,11 @@
 {
   "name": "portfolio",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro check && astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --host",
     "astro": "astro"
   },
   "dependencies": {

@@ -10,19 +10,22 @@ import { Image } from 'astro:assets';
 import devPp from "../../assets/dev_pp.png";
 import izakayaBg from "../../assets/izakaya_bg.png";
 import izakaya from "../../assets/izakaya.png";
-import html from "../../assets/html.png";
-import css from "../../assets/css.png";
-import js from "../../assets/javascript.png";
-import matlab from "../../assets/matlab.png";
-import svelte from "../../assets/svelte.png";
-import tailwind from "../../assets/tailwind.png";
-import typescript from "../../assets/typescript.png";
-import react from "../../assets/react.png";
-import proj1 from "../../assets/proj1.png";
-import proj2 from "../../assets/proj2.png";
-import proj3 from "../../assets/proj3.png";
-import proj4 from "../../assets/proj4.png";
-import proj5 from "../../assets/proj5.png";
+import html from "../../assets/dev/html.png";
+import css from "../../assets/dev/css.png";
+import js from "../../assets/dev/javascript.png";
+import matlab from "../../assets/dev/matlab.png";
+import svelte from "../../assets/dev/svelte.png";
+import tailwind from "../../assets/dev/tailwind.png";
+import typescript from "../../assets/dev/typescript.png";
+import threlte from "../../assets/dev/threlte.png";
+import three from "../../assets/dev/three.png";
+import react from "../../assets/dev/react.png";
+import proj1 from "../../assets/dev/proj1.png";
+import proj2 from "../../assets/dev/proj2.png";
+import proj3 from "../../assets/dev/proj3.png";
+import proj5 from "../../assets/dev/proj5.png";
+import proj6 from "../../assets/dev/proj6.png";
+import proj7 from "../../assets/dev/proj7.png";
 
 const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadata, string][] = [
 	[  
@@ -30,15 +33,15 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 	  `A personal recipe collection. Adapted recipes from well-known sources, organized for easy reference while baking.`,
 	  [[svelte, "Svelte Icon"], [js, "Javascript Icon"]],
 	  `${githubRepo}/basil-main`,
-	  proj5,
+	  proj7,
 	  "Basil Club Recipe Project" 
 	],
 	[  
 	  'Basil Club - 3D Webapp', 
 	  `An interactive 3D café. Contains multiple interactables and references, inspired by personal experiences.`,
-	  [[svelte, "Svelte Icon"], [tailwind, "Tailwind Icon"], [typescript, "Typescript Icon"]],
+	  [[threlte, "Threlte Icon"], [three, "Three JS Icon"]],
 	  `${githubRepo}/basil-club`,
-	  proj5,
+	  proj6,
 	  "Basil Club 3D Project" 
 	],
 	[  
@@ -74,14 +77,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 	  proj3,
 	  "Storefront Project" 
 	],
-	// [  
-	//   'CV Maker', 
-	//   `A simple CV maker that allows users to customize and download their CV.`,
-	//   [[react, "React Icon"], [js, "Javascript Icon"]],
-	//   `${githubRepo}/cv-project`,
-	//   proj4,
-	//   "CV Maker Project" 
-	// ],
 ]
 ---
 <script>
@@ -260,8 +255,8 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			</div>
 			<div class="dev-body subpage-body">
 				<div class="body-top dev-body-block" id="bodyTop">
-					<Image  src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image  src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
+					<Image src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Image src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
