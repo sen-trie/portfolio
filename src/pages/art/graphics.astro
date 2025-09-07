@@ -1,0 +1,222 @@
+---
+import { Image } from 'astro:assets';
+import LinkPic from '../../components/linkPic.astro';
+import VideoPic from '../../components/videoPic.astro';
+//
+import pic1 from "../../assets/art/pic1.png";
+import pic2 from "../../assets/art/pic2.png";
+import pic3 from "../../assets/art/pic3.png";
+import pic4 from "../../assets/art/pic4.jpg";
+import pic5 from "../../assets/art/pic5.png";
+import pic7 from "../../assets/art/pic7.png";
+import pic8 from "../../assets/art/pic8.png";
+import pic9 from "../../assets/art/pic9.png";
+import pic10 from "../../assets/art/pic10.png";
+//
+import vid1 from "../../assets/art/vid1.mp4";
+import vid1W from "../../assets/art/vid1.webm";
+import vid2 from "../../assets/art/vid2.mp4";
+import vid2W from "../../assets/art/vid2.webm";
+import vid3 from "../../assets/art/vid3.mp4";
+import vid3W from "../../assets/art/vid3.webm";
+import vid5 from "../../assets/art/vid5.mp4";
+import vid5W from "../../assets/art/vid5.webm";
+import vid6 from "../../assets/art/vid6.mp4";
+import vid6W from "../../assets/art/vid6.webm";
+//
+import tb1 from "../../assets/art/tb1.png";
+import tb2 from "../../assets/art/tb2.png";
+import tb3 from "../../assets/art/tb3.jpg";
+import tb4 from "../../assets/art/tb4.jpg";
+import tb5 from "../../assets/art/tb5.jpg";
+
+const artItems: [string, ImageMetadata | string, number | number[], number | string, string?, string?][] = [
+		['img', pic1, 2576, 1574],
+		['img', pic2, 1535, 861],
+		['img', pic3, 3840, 2160],
+		['img', pic4, 2160, 3840],
+		['img', pic5, 3590, 2019],
+		['img', pic7, 1920, 1080],
+		['img', pic8, 1905, 1072],
+		['img', pic9, 1920, 1080],
+		['img', pic10, 2162, 1496],
+		['vid', vid1, [1920, 1080], vid1W],
+		['vid', vid2, [1920, 1080], vid2W],
+		['vid', vid3, [1920, 1080], vid3W],
+		['vid', vid5, [1920, 1080], vid5W],
+		['vid', vid6, [1920, 1080], vid6W],
+		['link', tb1, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
+		['link', tb2, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
+		['link', tb3, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
+		['link', tb4, [1920, 1080], "https://www.youtube.com/watch?v=SN2EYs8_nmA"],
+		['link', tb5, [1920, 1080], "https://www.youtube.com/watch?v=RgBwLQty8B4"],
+]
+
+const imgItems = artItems.filter(data => data[0] === 'img');
+const vidItems = artItems.filter(data => data[0] === 'vid');
+const linkItems = artItems.filter(data => data[0] === 'link');
+
+const categoryTextDict: { [key: string]: string } = {
+	'img':'Still images showcasing individual scenes or concepts.',
+	'short':'Short animated projects, focusing on character motions. Can be played by clicking.',
+	'video':'Flagship animation projects. These works push my technical and creative skills to the limit as I explore a concept (e.g storytelling) as far as I can.'
+}
+---
+
+<h1>Graphics</h1>
+
+<div class="art-section">
+  <div class="body-container">
+    <h2 class="art-section-title">Stills</h2>
+    <h3>{categoryTextDict["img"]}</h3>
+  </div>
+  <div class="art-grid">
+    {
+      imgItems.map((data) => (
+        <Image class="art-grid-item art-img" src={data[1] as ImageMetadata} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
+      ))
+    }
+  </div>
+</div>
+
+<div class="art-section">
+  <div class="body-container">
+    <h2 class="art-section-title">Clips</h2>
+    <h3>{categoryTextDict["short"]}</h3>
+  </div>
+  <div class="art-grid">
+    {
+      vidItems.map((data) => (
+        <VideoPic vid={data[1]} dim={data[2]} webm={data[3]} />
+      ))
+    }
+  </div>
+</div>
+
+<div class="art-section">
+  <div class="body-container">
+    <h2 class="art-section-title">Exhibits</h2>
+    <h3>{categoryTextDict["video"]}</h3>
+  </div>
+  <div class="art-grid">
+    {
+      linkItems.map((data) => (
+        <LinkPic img={data[1] as ImageMetadata} dim={data[2] as number[]} url={data[3] as string} />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+	.art-buttons {
+		flex-direction: row;
+	}
+
+	.art-grid {
+		position: relative;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		overflow-x: hidden;
+        gap: 10px;
+		max-height: 70vh;
+		height: fit-content;
+		background-color: rgba(0, 0, 0, 0.35);
+		border-radius: 0.25rem;
+	}
+  
+	.art-grid-div > img {
+		height: inherit;
+		width: auto;
+	}
+  
+	.art-category {
+		color: var(--light-text);
+		background-color: rgb(226, 122, 122);
+		width: 15%;
+		line-height: calc(var(--font-h2) * 1.5);
+		transition: calc(var(--trans-time) / 2) ease;
+		margin-left: 2rem;
+		font-size: var(--font-h3);
+		justify-content: center;
+	}
+
+	.art-category:hover {
+		color: white;
+		background-color: #271414;
+	}
+
+
+	#art-category-text {
+		min-height: var(--font-h2);
+	}
+
+	:global(.art-grid-item) {
+		position: relative;
+		z-index: 2;
+		height: 275px;
+        width: auto;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+	}
+
+  .body-container {
+		padding: 0 1.5rem;
+		max-width: calc(900px + 1.5rem);
+    text-align: center;
+    margin-bottom: 1rem;
+	}
+
+  @media (max-width: 992px) {
+		.art-category {
+			width: 20%;
+		}
+    
+		.art-grid {
+			max-height: 60vh;
+		}
+
+		:global(.art-grid-item) {
+			height: 175px;
+		}
+    
+		.body-menu > .body-container {
+			padding: 0 0.5rem;
+		}
+  }
+
+  @media (max-width: 768px) {
+    .art-grid {
+			flex-direction: column;
+			overflow-x: auto;
+			max-height: 60vh;
+		}
+
+		:global(.art-grid-item) {
+			height: 125px;
+		}
+
+		.art-category {
+			margin: 0;
+			padding: 0;
+			width: 30%;
+			line-height: calc(var(--font-h1) * 1.5);
+			font-size:  calc(var(--font-h1) * 0.75);
+			justify-content: center;
+		}
+
+		.art-buttons {
+			justify-content: space-between;
+			padding: 0 1rem;
+		}
+  }
+
+  @media (max-width: 576px) {
+		.body-container {
+			padding: 0 1rem;
+		}
+  }
+</style>
