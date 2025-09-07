@@ -12,6 +12,10 @@ import pic7 from "../../assets/art/pic7.png";
 import pic8 from "../../assets/art/pic8.png";
 import pic9 from "../../assets/art/pic9.png";
 import pic10 from "../../assets/art/pic10.png";
+import pic11 from "../../assets/art/pic11.webp";
+import pic12 from "../../assets/art/pic12.png";
+import pic13 from "../../assets/art/pic13.jpg";
+import pic14 from "../../assets/art/pic14.jpg";
 //
 import vid1 from "../../assets/art/vid1.mp4";
 import vid1W from "../../assets/art/vid1.webm";
@@ -23,6 +27,8 @@ import vid5 from "../../assets/art/vid5.mp4";
 import vid5W from "../../assets/art/vid5.webm";
 import vid6 from "../../assets/art/vid6.mp4";
 import vid6W from "../../assets/art/vid6.webm";
+import vid7 from "../../assets/art/vid7.mp4";
+import vid7W from "../../assets/art/vid7.webm";
 //
 import tb1 from "../../assets/art/tb1.png";
 import tb2 from "../../assets/art/tb2.png";
@@ -30,7 +36,13 @@ import tb3 from "../../assets/art/tb3.jpg";
 import tb4 from "../../assets/art/tb4.jpg";
 import tb5 from "../../assets/art/tb5.jpg";
 
-const artItems: [string, ImageMetadata | string, number | number[], number | string, string?, string?][] = [
+const artItems: [
+  string, 
+  ImageMetadata | string, 
+  number | number[], 
+  number | string, 
+  string?, 
+  string?][] = [
 		['img', pic1, 2576, 1574],
 		['img', pic2, 1535, 861],
 		['img', pic3, 3840, 2160],
@@ -40,11 +52,16 @@ const artItems: [string, ImageMetadata | string, number | number[], number | str
 		['img', pic8, 1905, 1072],
 		['img', pic9, 1920, 1080],
 		['img', pic10, 2162, 1496],
-		['vid', vid1, [1920, 1080], vid1W],
-		['vid', vid2, [1920, 1080], vid2W],
-		['vid', vid3, [1920, 1080], vid3W],
-		['vid', vid5, [1920, 1080], vid5W],
-		['vid', vid6, [1920, 1080], vid6W],
+		['img', pic11, 768, 768],
+		['img', pic12, 1874, 970],
+		['img', pic13, 1151, 1151],
+		['img', pic14, 2560, 2560],
+		['vid', vid1, [1920, 1080], vid1W, "vid1"],
+		['vid', vid2, [1920, 1080], vid2W, "vid2"],
+		['vid', vid3, [1920, 1080], vid3W, "vid3"],
+		['vid', vid5, [1920, 1080], vid5W, "vid5"],
+		['vid', vid6, [1920, 1080], vid6W, "vid6"],
+		['vid', vid7, [1920, 1080], vid7W, "vid7"],
 		['link', tb1, [1920, 1080], "https://www.youtube.com/watch?v=vHGuVzc_z68"],
 		['link', tb2, [2880, 1206], "https://www.youtube.com/watch?v=1YzAhbeAiUE"],
 		['link', tb3, [1920, 1080], "https://www.youtube.com/watch?v=_uEzKYpAo58"],
@@ -61,6 +78,21 @@ const categoryTextDict: { [key: string]: string } = {
 	'short':'Short animated projects, focusing on character motions. Can be played by clicking.',
 	'video':'Flagship animation projects. These works push my technical and creative skills to the limit as I explore a concept (e.g storytelling) as far as I can.'
 }
+
+declare global {
+  interface Array<T> {
+    shuffle(): T[];
+  }
+}
+
+Array.prototype.shuffle = function<T>(this: T[]): T[] {
+  const shuffled = [...this];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 ---
 
 <h1>Graphics</h1>
@@ -74,7 +106,7 @@ const categoryTextDict: { [key: string]: string } = {
     {
       imgItems.map((data) => (
         <Image class="art-grid-item art-img" src={data[1] as ImageMetadata} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
-      ))
+      )).shuffle()
     }
   </div>
 </div>
@@ -87,8 +119,8 @@ const categoryTextDict: { [key: string]: string } = {
   <div class="art-grid">
     {
       vidItems.map((data) => (
-        <VideoPic vid={data[1]} dim={data[2]} webm={data[3]} />
-      ))
+        <VideoPic vid={data[1]} dim={data[2]} webm={data[3]} tb={data[4]}/>
+      )).shuffle()
     }
   </div>
 </div>
@@ -102,7 +134,7 @@ const categoryTextDict: { [key: string]: string } = {
     {
       linkItems.map((data) => (
         <LinkPic img={data[1] as ImageMetadata} dim={data[2] as number[]} url={data[3] as string} />
-      ))
+      )).shuffle()
     }
   </div>
 </div>
