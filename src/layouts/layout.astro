@@ -1,9 +1,39 @@
 ---
 import '@fontsource-variable/rubik';
-import { ClientRouter, fade } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 const { title } = Astro.props;
-const base = import.meta.env.BASE_URL;
+
+import { getImage } from 'astro:assets'
+import faviconIco from '../favicon/favicon.ico'
+import faviconSrc from '../favicon/favicon.png'
+import faviconSvgSrc from '../favicon/favicon.svg'
+
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: 'png'
+})
+const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
 ---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#12171b">
+        <meta name="description" content="IAM_SENTRIE'S portfolio. Showcases technical and creative projects." />
+        <link rel="icon" href={faviconIco.src} sizes="32x32" />
+        <link rel="icon" href={faviconSvg.src} type="image/svg+xml" />
+        <link rel="apple-touch-icon" href={appleTouchIcon.src} />
+        <title> { title } </title>
+        <ClientRouter />
+    </head>
+    <body transition:animate="fade"> 
+        <slot />
+    </body>
+</html>
 
 <style is:global>
 @keyframes slideDown {
@@ -37,21 +67,3 @@ const base = import.meta.env.BASE_URL;
   }
 }
 </style>
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#12171b">
-        <meta name="description" content="IAM_SENTRIE'S portfolio. Showcases technical and creative projects." />
-        <link rel="icon" href={`${base}/favicon.ico`} type="image/x-icon">
-        <link rel="icon" href={`${base}/favicon-16x16.png`} sizes="16x16" type="image/png">
-        <link rel="icon" href={`${base}/favicon-32x32.png`} sizes="32x32" type="image/png">
-        <title> { title } </title>
-        <ClientRouter />
-    </head>
-    <body transition:animate="fade"> 
-        <slot />
-    </body>
-</html>
