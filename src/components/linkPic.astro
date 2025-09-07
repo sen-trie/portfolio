@@ -1,13 +1,11 @@
 ---
-import Image from 'astro/components/Image.astro';
 export interface Props {
-  url: string;
-  dim: Array<number>;
-  img: ImageMetadata;
+    img: ImageMetadata;
+    dim: Array<number>;
+    url: string;
 }
 
 const { url, dim, img } = Astro.props;
-// TODO YT Embed
 ---
 
 <style is:global>
@@ -46,13 +44,14 @@ const { url, dim, img } = Astro.props;
 </style>
 
 <a class="art-grid-div art-grid-item art-video" href={ url } target="_blank">
-    <div>
-        <Image src={ img } loading="lazy" width={dim[0]} height={dim[1]} alt=''/>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="48" height="48" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-            <path d="M11 13l9 -9" />
-            <path d="M15 4h5v5" />
-          </svg>
-    </div>
+    <iframe 
+        width={dim[0] / dim[1] * 275} height="275" 
+        src={url}
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen
+    >
+    </iframe>
 </a>

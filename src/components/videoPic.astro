@@ -25,17 +25,17 @@ const { dim, vid, webm, tb } = Astro.props;
     const video = document.getElementById(`video-${vid}`);
     const thumb = video.nextElementSibling;
 
-    video.addEventListener("play", () => {
+    const hideThumb = () => {
         thumb.style.display = "none";
-    });
+    };
 
-    video.addEventListener("pause", () => {
+    const showThumb = () => {
         thumb.style.display = "block";
-    });
+    };
 
-    video.addEventListener("ended", () => {
-        thumb.style.display = "block";
-    });
+    video.addEventListener("play", hideThumb);
+    video.addEventListener("ended", showThumb);
+    video.addEventListener("pointerdown", hideThumb);
 </script>
 
 <style is:global>
