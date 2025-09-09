@@ -1,4 +1,5 @@
 ---
+import Picture from "astro/components/Picture.astro";
 const { dim, vid, webm, tb } = Astro.props;
 ---
 <div class="art-grid-div art-grid-item art-short">
@@ -7,7 +8,7 @@ const { dim, vid, webm, tb } = Astro.props;
         <source src={`${webm}#t=0`} type="video/webm">
         Your browser does not support the video tag.
     </video>
-    <img src={tb.src} alt="" class="video-thumb" onerror="this.remove()"/>
+    <Picture src={tb} alt="" class="video-thumb" onerror="this.remove()"/>
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="48" height="48" viewBox="0 0 24 24" stroke-width="1" stroke="#eed695" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
@@ -51,8 +52,7 @@ const { dim, vid, webm, tb } = Astro.props;
         position: relative;
     }
 
-
-    img {
+    picture, img {
         position: absolute;
         width: 100%;
         height: 100%;

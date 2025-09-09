@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import LinkPic from '../../components/linkPic.astro';
 import VideoPic from '../../components/videoPic.astro';
 //
@@ -115,7 +115,9 @@ Array.prototype.shuffle = function<T>(this: T[]): T[] {
   <div class="art-grid">
     {
       imgItems.map((data) => (
-        <Image class="art-grid-item art-img" src={data[1] as ImageMetadata} loading="lazy" width={data[2] as number} height={data[3] as number} alt='art img'/>
+        <Picture 
+					class="art-grid-item art-img" src={data[1] as ImageMetadata} 
+					loading="lazy" alt='art img'/>
       )).shuffle()
     }
   </div>

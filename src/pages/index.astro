@@ -2,7 +2,7 @@
 import '../global.css'
 import Meta from '../layouts/layout.astro';
 import banner from "../assets/banner.png";
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 ---
 
 <script>
@@ -99,7 +99,10 @@ import { Image } from 'astro:assets';
 <Meta title="SENTRIE | HOME" animOut="slideDown">
 	<div class="home-div" id="homeDiv" transition:persist>
 		<div class="home-header" id="homeHeader">
-			<Image src={banner} alt="banner" class="banner" id="homeImage"/>
+			<Picture 
+				formats={['avif', 'webp']} 
+				layout="full-width" 
+				src={banner} alt="banner" class="banner" id="homeImage"/>
 		</div>
 		<div class="body-side body-left" id="bodyLeftDiv">
 			<p id="bodyLeft">
@@ -133,6 +136,10 @@ import { Image } from 'astro:assets';
 		height: 200px;
 		transition: var(--trans-time) ease;
 		background: linear-gradient(90deg, #09201d 50%, var(--dark-body) 50%);
+	}
+
+	.home-header > picture {
+		height: 100%;
 	}
 
 	.banner {

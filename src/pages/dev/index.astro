@@ -6,7 +6,7 @@ import Form from '../../components/form.astro';
 import Footer from '../../components/footer.astro';
 import ProfileButton from '../../components/profileLogo.astro';
 import { githubRepo } from '../../shared.js'
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import devPp from "../../assets/dev_pp.png";
 import izakayaBg from "../../assets/izakaya_bg.png";
 import izakaya from "../../assets/izakaya.png";
@@ -220,7 +220,7 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			<div class="dev-header" id="devHeader">
 				<div class="dev-header-left">
 					<ProfileButton>
-						<Image priority={true} src={devPp} alt="developer profile" class="profile-pic" />
+						<Picture priority={true} src={devPp} alt="developer profile" class="profile-pic" />
 					</ProfileButton>
 					<div class="header-div">
 						<a class="header-item" href="./#about">About</a>
@@ -255,8 +255,8 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			</div>
 			<div class="dev-body subpage-body">
 				<div class="body-top dev-body-block" id="bodyTop">
-					<Image src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Image src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
+					<Picture src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
+					<Picture src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -287,12 +287,12 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 										<p class="block-desc">{data[1]}</p>
 										<div class="block-ingredients">
 											{data[2].map((tech) => {
-												return <Image src={tech[0]} alt={tech[1]} />
+												return <Picture layout="constrained" src={tech[0]} alt={tech[1]} />
 											})}
 										</div>
 									</div>
 									<a class="block-pic" href={data[3]} target="_blank">
-										<Image src={data[4]} alt={data[5]} />
+										<Picture layout="constrained" src={data[4]} alt={data[5]} />
 									</a>
 								</div>)
 								})
@@ -445,18 +445,6 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		filter: drop-shadow(0 0 0.35rem #a86eb877) drop-shadow(0 0 0.35rem #3d174763);
 	}
 
-	.izakaya {
-		position: absolute;
-		display: block;
-		object-fit: cover;
-		object-position: center center;
-		height: 100%;
-		width: 100%;
-		min-height: 100%;
-		min-width: 100%;
-		transform: scale(1.1);
-	}
-
 	.body-story {
 		background-color: #3f1d38;
 		padding-bottom: 55px;
@@ -520,7 +508,7 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		height: fit-content;
 	}
 
-	.block-ingredients > img {
+	.block-ingredients picture {
 		width: 90px;
 		margin-right: 0.5rem;
 		max-width: 30%;
@@ -560,11 +548,11 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		aspect-ratio: 1.27;
 	}
 
-	.block-pic > img {
+	.block-pic img, .block-pic picture {
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-        border: 4px solid var(--light-body);
+    border: 2px solid var(--light-body);
 	}
 
 	.body-art {
@@ -631,9 +619,9 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 		.block-pic {
 			margin-top: 1rem;
 			margin-bottom: 1rem;
-            max-height: clamp(50%, 35vh, 80%);
+      max-height: clamp(50%, 35vh, 80%);
 			width: 90%;
-            aspect-ratio: 2;
+      aspect-ratio: 2;
 		}
 
 		.block-ingredients {
