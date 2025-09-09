@@ -157,7 +157,11 @@ import { Picture } from 'astro:assets';
 			<div class="dev-header" id="devHeader">
 				<div class="dev-header-left">
 					<ProfileButton>
-						<Picture priority={true} src={pp} alt="developer profile" class="profile-pic" />
+						<Picture 
+							layout="constrained" formats={['avif', 'webp']}  
+							priority={true} src={pp} 
+							alt="developer profile" class="profile-pic" 
+						/>
 					</ProfileButton>
 					<div class="header-div">
 						<a class="header-item" href="./#about">About</a>
@@ -197,13 +201,15 @@ import { Picture } from 'astro:assets';
 			</div>
 			<div class="dev-body subpage-body">
 				<div class="body-top dev-body-block" id="bodyTop">
-					<Picture src={izakayaBg}   
-						loading="eager" 
+					<Picture 
+						formats={['avif', 'webp']} src={izakayaBg}   
+						loading="eager" layout="constrained"
 						width="3000" height="1200" 
 						class="izakaya izakaya-bg" alt='izakaya_bg'
 					/>
-					<Picture src={izakaya}   
-						loading="eager" 
+					<Picture 
+						formats={['avif', 'webp']}  src={izakaya}   
+						loading="eager" layout="constrained"
 						width="3000" height="1200" 
 						class="izakaya izakaya-main" alt='izakaya'
 					/>

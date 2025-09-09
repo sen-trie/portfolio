@@ -33,6 +33,7 @@ const { url, dim, img } = Astro.props;
     iframe {
         height: 100%;
         width: 100%;
+        border: 0px;
     }
 
     @media (max-width: 992px) {
@@ -48,11 +49,14 @@ const { url, dim, img } = Astro.props;
     }
 </style>
 
-<a class="art-grid-div art-grid-item art-video" href={ url } target="_blank">
+<a 
+    class="art-grid-div art-grid-item art-video" 
+    href={ url } target="_blank"
+    style={`aspect-ratio: ${dim[0]} / ${dim[1]};`}
+>
     <iframe 
         src={url}
         title="YouTube video player" 
-        frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" 
         allowfullscreen

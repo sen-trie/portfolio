@@ -220,7 +220,10 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			<div class="dev-header" id="devHeader">
 				<div class="dev-header-left">
 					<ProfileButton>
-						<Picture priority={true} src={devPp} alt="developer profile" class="profile-pic" />
+						<Picture 
+							formats={['avif', 'webp']}  priority={true} layout="constrained"
+							src={devPp} alt="developer profile" class="profile-pic" 
+						/>
 					</ProfileButton>
 					<div class="header-div">
 						<a class="header-item" href="./#about">About</a>
@@ -255,8 +258,18 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 			</div>
 			<div class="dev-body subpage-body">
 				<div class="body-top dev-body-block" id="bodyTop">
-					<Picture src={izakayaBg} width="3000" height="1200" class="izakaya izakaya-bg" alt='izakaya_bg'/>
-					<Picture src={izakaya} width="3000" height="1200" class="izakaya izakaya-main" alt='izakaya'/>
+					<Picture 
+						layout="constrained"
+						formats={['avif', 'webp']}  src={izakayaBg} 
+						width="3000" height="1200" 
+						class="izakaya izakaya-bg" alt='izakaya_bg'
+					/>
+					<Picture 
+						layout="constrained"
+						formats={['avif', 'webp']}  src={izakaya} 
+						width="3000" height="1200" 
+						class="izakaya izakaya-main" alt='izakaya'
+					/>
 					<div class="divider top-divider dev-body-block" />
 				</div>
 				<Anchor id="about" />
@@ -287,12 +300,18 @@ const devItems: [string, string, [ImageMetadata, string][], string, ImageMetadat
 										<p class="block-desc">{data[1]}</p>
 										<div class="block-ingredients">
 											{data[2].map((tech) => {
-												return <Picture layout="constrained" src={tech[0]} alt={tech[1]} />
+												return <Picture 
+													formats={['avif', 'webp']} layout="constrained" 
+													src={tech[0]} alt={tech[1]}
+												/>
 											})}
 										</div>
 									</div>
 									<a class="block-pic" href={data[3]} target="_blank">
-										<Picture layout="constrained" src={data[4]} alt={data[5]} />
+										<Picture 
+												formats={['avif', 'webp']} layout="constrained" 
+												src={data[4]} alt={data[5]} 
+											/>
 									</a>
 								</div>)
 								})

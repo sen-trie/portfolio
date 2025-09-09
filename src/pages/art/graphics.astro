@@ -115,7 +115,8 @@ Array.prototype.shuffle = function<T>(this: T[]): T[] {
   <div class="art-grid">
     {
       imgItems.map((data) => (
-        <Picture 
+        <Picture formats={['avif', 'webp']}
+					layout="constrained"
 					class="art-grid-item art-img" src={data[1] as ImageMetadata} 
 					loading="lazy" alt='art img'/>
       )).shuffle()
