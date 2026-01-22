@@ -20,19 +20,27 @@ const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <!-- <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#12171b">
         <meta name="description" content="IAM_SENTRIE'S portfolio. Showcases technical and creative projects." />
         <link rel="icon" href={faviconIco} sizes="32x32" />
         <link rel="icon" href={faviconSvg.src} type="image/svg+xml" />
         <link rel="apple-touch-icon" href={appleTouchIcon.src} />
-        <title> { title } </title>
-        <ClientRouter />
+        <title> { title } </title> -->
+        <!-- <ClientRouter /> -->
+
+        <title>Redirecting...</title>
+        <link rel="canonical" href="https://www.sentrie.cv/" />
+        <meta charset="utf-8" />
+        <meta http-equiv="refresh" content="0; url=https://www.sentrie.cv/" />
     </head>
-    <body transition:animate="fade"> 
-        <slot />
+    <body>
+      <p>Redirecting...</p>
     </body>
+    <!-- <body transition:animate="fade"> 
+        <slot />
+    </body> -->
 </html>
 
 <style is:global>
